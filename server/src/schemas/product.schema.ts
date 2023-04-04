@@ -1,8 +1,10 @@
-import { Column, Model, Table } from 'sequelize-typescript';
+import { Column, ForeignKey, Model, Table } from 'sequelize-typescript';
 import { IProduct } from 'src/interfaces/product.interface';
+import { ShopkeeperSchema } from './shopkeeper.schema';
 
 @Table
 export class ProductSchema extends Model<IProduct> {
+  @ForeignKey(() => ShopkeeperSchema)
   @Column
   shopkeeperId: number;
 
