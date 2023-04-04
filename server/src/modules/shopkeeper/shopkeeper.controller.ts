@@ -1,16 +1,15 @@
 import {
-  Controller,
-  Get,
-  Post,
   Body,
-  Patch,
-  Param,
+  Controller,
   Delete,
-  ParseIntPipe,
+  Get,
+  Param,
+  Patch,
+  Post,
 } from '@nestjs/common';
-import { ShopkeeperService } from './shopkeeper.service';
 import { CreateShopkeeperDto } from './dto/create-shopkeeper.dto';
 import { UpdateShopkeeperDto } from './dto/update-shopkeeper.dto';
+import { ShopkeeperService } from './shopkeeper.service';
 
 @Controller('shopkeeper')
 export class ShopkeeperController {
