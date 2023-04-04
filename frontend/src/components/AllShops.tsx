@@ -1,6 +1,7 @@
-import { Grid, GridItem, Heading, Image, Text } from "@chakra-ui/react";
+import { Button, Grid, GridItem, Heading, Image, Text } from "@chakra-ui/react";
 import _ from "lodash";
 import { Shops } from "../mocks/shop.mock";
+import { Link } from "react-router-dom";
 
 function AllShops() {
   return (
@@ -27,6 +28,10 @@ function AllShops() {
                   {item.shopName}
                 </Text>
                 <Text color="#7A7A7A">{item.des} </Text>
+                <Button my="2" textAlign={"center"} bg={"blue.500"} size={"sm"}>
+                  {" "}
+                  <Link to={"/listofproducts"}> Visit Shop </Link>
+                </Button>
               </GridItem>
             </>
           );

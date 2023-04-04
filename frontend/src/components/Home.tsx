@@ -1,9 +1,9 @@
-import { Heading } from "@chakra-ui/react";
+import AllShops from "./AllShops";
 
 function Home() {
   return (
     <>
-      <Heading>Home page !</Heading>
+      <AllShops />
     </>
   );
 }
