@@ -8,6 +8,7 @@ import {
   Input,
 } from "@chakra-ui/react";
 import { FieldValues, useForm } from "react-hook-form";
+import { Link } from "react-router-dom";
 
 function Login() {
   const {
@@ -65,6 +66,14 @@ function Login() {
           </Button>
         </Flex>
       </form>
+      <Heading textAlign={"center"} mt={"2"} size={"sm"}>
+        {" "}
+        Create new account!{" "}
+        <Link to={"/signup"} color="teal.500">
+          {" "}
+          Sign Up{" "}
+        </Link>
+      </Heading>
     </>
   );
 }

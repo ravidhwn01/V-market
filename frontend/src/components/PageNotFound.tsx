@@ -1,4 +1,5 @@
 import { Box, Center, Flex } from "@chakra-ui/react";
+import { Navigate } from "react-router-dom";
 
 function PageNotFound() {
   return (
@@ -8,6 +9,7 @@ function PageNotFound() {
           Page Not Found
         </Box>
       </Center>
+      <Navigate to={"/"} />
     </Flex>
   );
 }

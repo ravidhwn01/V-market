@@ -8,16 +8,17 @@ import {
   Input,
 } from "@chakra-ui/react";
 import { FieldValues, useForm } from "react-hook-form";
-import { UserSignUpSchema } from "../schemas/userSignUp.schema";
+import { ShopkeeperSchema } from "../schemas/shopkeeper.schema";
 
 import { yupResolver } from "@hookform/resolvers/yup";
+import { Link } from "react-router-dom";
 function SignUp() {
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm({
-    resolver: yupResolver(UserSignUpSchema),
+    resolver: yupResolver(ShopkeeperSchema),
   });
 
   const onHandleSubmit = (userSignDetails: FieldValues) => {
@@ -110,6 +111,15 @@ function SignUp() {
           </Button>
         </Flex>
       </form>
+
+      <Heading textAlign={"center"} mt={"2"} size={"sm"}>
+        {" "}
+        Already account !{" "}
+        <Link to={"/login"} color="teal.500">
+          {" "}
+          Login{" "}
+        </Link>
+      </Heading>
     </>
   );
 }
