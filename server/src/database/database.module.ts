@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { SequelizeModule } from '@nestjs/sequelize';
 import { ShopkeeperSchema } from 'src/schemas/shopkeeper.schema';
-
+// The @Module() decorator is used to define a module in NestJS, which is a way to organize code into cohesive units
 @Module({
   imports: [
     SequelizeModule.forRoot({
@@ -12,6 +12,7 @@ import { ShopkeeperSchema } from 'src/schemas/shopkeeper.schema';
       port: 5002,
       models: [ShopkeeperSchema],
       autoLoadModels: true,
+      // Finally, the autoLoadModels property is set to true, which tells the SequelizeModule to automatically load all models defined in the models array.
     }),
   ],
 })

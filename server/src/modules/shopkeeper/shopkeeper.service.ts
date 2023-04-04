@@ -6,11 +6,13 @@ import { ShopkeeperSchema } from 'src/schemas/shopkeeper.schema';
 
 @Injectable()
 export class ShopkeeperService {
+  //  the repository object can be used to access and modify data for the ShopkeeperSchema model.
+  // The repository object will be of type Repository with a generic type of ShopkeeperSchema, which is used to store data for the ShopkeeperSchema model.
   private repository: Repository<ShopkeeperSchema>;
   constructor(private sequelize: Sequelize) {
     this.repository = this.sequelize.getRepository(ShopkeeperSchema);
   }
-
+  // In the constructor function, a private member named sequelize is accepted as a parameter. sequelize is an instance of the Sequelize class, which provides the ability to connect to the database.
   create(createShopkeeperDto: CreateShopkeeperDto) {
     return this.repository.create(createShopkeeperDto);
   }
