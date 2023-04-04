@@ -1,62 +1,62 @@
-export const Shops = [
+export const Products = [
   {
-    shopName: "shop 1",
+    productName: "product 1",
     imgUrl:
       "https://images.unsplash.com/photo-1679678691256-fa3ce50c2159?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2153&q=80",
-    des: "Lorem, ipsum dolor. Lorem, ipsum dolor.",
+    des: "Lorem, ipsum dolor.",
   },
   {
-    shopName: "shop 2",
+    productName: "product 2",
     imgUrl:
       "https://images.unsplash.com/photo-1679678691256-fa3ce50c2159?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2153&q=80",
-    des: "Lorem, ipsum dolor. Lorem, ipsum dolor.",
+    des: "Lorem, ipsum dolor.",
   },
   {
-    shopName: "shop 3",
+    productName: "product 3",
     imgUrl:
       "https://images.unsplash.com/photo-1679678691256-fa3ce50c2159?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2153&q=80",
-    des: "Lorem, ipsum dolor. Lorem, ipsum dolor.",
+    des: "Lorem, ipsum dolor.",
   },
   {
-    shopName: "shop 4",
+    productName: "product 4",
     imgUrl:
       "https://images.unsplash.com/photo-1679678691256-fa3ce50c2159?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2153&q=80",
-    des: "Lorem, ipsum dolor. Lorem, ipsum dolor.",
+    des: "Lorem, ipsum dolor.",
   },
   {
-    shopName: "shop 5",
+    productName: "product 5",
     imgUrl:
       "https://images.unsplash.com/photo-1679678691256-fa3ce50c2159?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2153&q=80",
-    des: "Lorem, ipsum dolor. Lorem, ipsum dolor.",
+    des: "Lorem, ipsum dolor.",
   },
   {
-    shopName: "shop 6",
+    productName: "product 6",
     imgUrl:
       "https://images.unsplash.com/photo-1679678691256-fa3ce50c2159?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2153&q=80",
-    des: "Lorem, ipsum dolor. Lorem, ipsum dolor.",
+    des: "Lorem, ipsum dolor.",
   },
   {
-    shopName: "shop 7",
+    productName: "product 7",
     imgUrl:
       "https://images.unsplash.com/photo-1679678691256-fa3ce50c2159?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2153&q=80",
-    des: "Lorem, ipsum dolor. Lorem, ipsum dolor.",
+    des: "Lorem, ipsum dolor.",
   },
   {
-    shopName: "shop 8",
+    productName: "product 8",
     imgUrl:
       "https://images.unsplash.com/photo-1679678691256-fa3ce50c2159?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2153&q=80",
-    des: "Lorem, ipsum dolor. Lorem, ipsum dolor.",
+    des: "Lorem, ipsum dolor.",
   },
   {
-    shopName: "shop 9",
+    productName: "product 9",
     imgUrl:
       "https://images.unsplash.com/photo-1679678691256-fa3ce50c2159?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2153&q=80",
-    des: "Lorem, ipsum dolor. Lorem, ipsum dolor.",
+    des: "Lorem, ipsum dolor.",
   },
   {
-    shopName: "shop 10",
+    productName: "product 10",
     imgUrl:
       "https://images.unsplash.com/photo-1679678691256-fa3ce50c2159?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2153&q=80",
-    des: "Lorem, ipsum dolor. Lorem, ipsum dolor.",
+    des: "Lorem, ipsum dolor.",
   },
 ];

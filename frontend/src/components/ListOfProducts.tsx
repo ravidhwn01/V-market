@@ -1,8 +1,9 @@
-import { Grid, GridItem, Heading, Image, Text } from "@chakra-ui/react";
+import { Grid, GridItem, Image, Text } from "@chakra-ui/react";
 import _ from "lodash";
-import { Shops } from "../mocks/shop.mock";
 
-function AllShops() {
+import { Products } from "../mocks/listOfProduct.mock";
+
+function ListOfProducts() {
   return (
     <>
       <Grid
@@ -11,7 +12,7 @@ function AllShops() {
         m="8"
         justifyContent={"center"}
       >
-        {_.map(Shops, (item) => {
+        {_.map(Products, (item) => {
           return (
             <>
               <GridItem
@@ -24,7 +25,7 @@ function AllShops() {
                 <Image src={item.imgUrl} />
 
                 <Text fontSize={"2xl"} fontWeight="bold">
-                  {item.shopName}
+                  {item.productName}
                 </Text>
                 <Text color="#7A7A7A">{item.des} </Text>
               </GridItem>
@@ -36,4 +37,4 @@ function AllShops() {
   );
 }
 
-export default AllShops;
+export default ListOfProducts;
