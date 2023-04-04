@@ -7,23 +7,34 @@ import {
   Heading,
   Input,
 } from "@chakra-ui/react";
-import { FieldValues, useForm } from "react-hook-form";
-import { ShopkeeperSchema } from "../schemas/shopkeeper.schema";
+import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
+import { IShopkeeper, ShopkeeperSchema } from "../schemas/shopkeeper.schema";
 
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Link } from "react-router-dom";
+import { useMutation, useQueryClient } from "react-query";
+import { addShopkeeper } from "../api/shopkeeper.api";
+
 function SignUp() {
+  const queryClient = useQueryClient();
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({
+  } = useForm<IShopkeeper>({
     resolver: yupResolver(ShopkeeperSchema),
   });
 
-  const onHandleSubmit = (userSignDetails: FieldValues) => {
+  const onHandleSubmit = (userSignDetails: IShopkeeper) => {
     console.log(userSignDetails);
+    mutation.mutate(userSignDetails);
   };
+
+  const mutation = useMutation(addShopkeeper, {
+    onSuccess: () => {
+      console.log("created shopkeeper");
+    },
+  });
 
   return (
     <>
@@ -114,7 +125,7 @@ function SignUp() {
 
       <Heading textAlign={"center"} mt={"2"} size={"sm"}>
         {" "}
-        Already account !{" "}
+        Already have an account !{" "}
         <Link to={"/login"} color="teal.500">
           {" "}
           Login{" "}

@@ -10,3 +10,5 @@ export const ShopkeeperSchema = yup.object({
     .oneOf([yup.ref("password"), ""], "Passwords didn't match")
     .required("Please Enter Your Password Again"),
 });
+
+export type IShopkeeper = yup.InferType<typeof ShopkeeperSchema>;
