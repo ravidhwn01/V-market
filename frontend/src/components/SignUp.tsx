@@ -14,6 +14,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { Link } from "react-router-dom";
 import { useMutation, useQueryClient } from "react-query";
 import { addShopkeeper } from "../api/shopkeeper.api";
+import Navbar from "./Navbar";
 
 function SignUp() {
   const queryClient = useQueryClient();
@@ -38,6 +39,7 @@ function SignUp() {
 
   return (
     <>
+      <Navbar />
       <Heading textAlign={"center"} m="3">
         Create Your Account{" "}
       </Heading>

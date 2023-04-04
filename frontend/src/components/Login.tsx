@@ -9,6 +9,7 @@ import {
 } from "@chakra-ui/react";
 import { FieldValues, useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
+import Navbar from "./Navbar";
 
 function Login() {
   const {
@@ -22,6 +23,7 @@ function Login() {
 
   return (
     <>
+      <Navbar />
       <Heading textAlign={"center"} m="3">
         Login{" "}
       </Heading>

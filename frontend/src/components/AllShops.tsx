@@ -2,10 +2,12 @@ import { Button, Grid, GridItem, Heading, Image, Text } from "@chakra-ui/react";
 import _ from "lodash";
 import { Shops } from "../mocks/shop.mock";
 import { Link } from "react-router-dom";
+import Navbar from "./Navbar";
 
 function AllShops() {
   return (
     <>
+      <Navbar />
       <Grid
         templateColumns="repeat(auto-fit, 290px)"
         gap={6}
