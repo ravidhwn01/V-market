@@ -1,3 +1,4 @@
+import { object, string } from "prop-types";
 import * as yup from "yup";
 
 export const ShopkeeperSchema = yup.object({
@@ -12,3 +13,11 @@ export const ShopkeeperSchema = yup.object({
 });
 
 export type IShopkeeper = yup.InferType<typeof ShopkeeperSchema>;
+
+export const ProductSchema = yup.object({
+  productName: yup.string().required("Please enter product name"),
+  description: yup.string().required("Please enter description"),
+  quantity: yup.number().required("Please enter quantity"),
+});
+
+export type IProduct = yup.InferType<typeof ProductSchema>;
