@@ -1,26 +1,42 @@
 import { Injectable } from '@nestjs/common';
 import { CreateTradeDto } from './dto/create-trade.dto';
 import { UpdateTradeDto } from './dto/update-trade.dto';
+import { Repository, Sequelize } from 'sequelize-typescript';
+import { TradeSchema } from 'src/schemas/trade.schema';
 
 @Injectable()
 export class TradeService {
+  private repository: Repository<TradeSchema>;
+  constructor(private sequelize: Sequelize) {
+    this.repository = this.sequelize.getRepository(TradeSchema);
+  }
   create(createTradeDto: CreateTradeDto) {
-    return 'This action adds a new trade';
+    return this.repository.create(createTradeDto);
   }
 
   findAll() {
-    return `This action returns all trade`;
+    return this.repository.findAll();
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} trade`;
+    return this.repository.findOne({
+      where: { id },
+    });
   }
 
   update(id: number, updateTradeDto: UpdateTradeDto) {
-    return `This action updates a #${id} trade`;
+    return this.repository.update(updateTradeDto, {
+      where: {
+        id,
+      },
+    });
   }
 
   remove(id: number) {
-    return `This action removes a #${id} trade`;
+    return this.repository.destroy({
+      where: {
+        id,
+      },
+    });
   }
 }
