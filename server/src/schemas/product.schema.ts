@@ -1,7 +1,8 @@
 import { Column, Model, Table } from 'sequelize-typescript';
+import { IProduct } from 'src/interfaces/product.interface';
 
 @Table
-export class PorductSchema extends Model {
+export class ProductSchema extends Model<IProduct> {
   @Column
   shopkeeperId: number;
 

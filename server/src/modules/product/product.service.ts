@@ -1,26 +1,39 @@
 import { Injectable } from '@nestjs/common';
 import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
+import { Repository, Sequelize } from 'sequelize-typescript';
+import { ProductSchema } from 'src/schemas/product.schema';
 
 @Injectable()
 export class ProductService {
+  private repository: Repository<ProductSchema>;
+  constructor(private sequelize: Sequelize) {
+    this.repository = this.sequelize.getRepository(ProductSchema);
+  }
+
   create(createProductDto: CreateProductDto) {
-    return 'This action adds a new product';
+    return this.repository.create(createProductDto);
   }
 
   findAll() {
-    return `This action returns all product`;
+    return this.repository.findAll();
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} product`;
+    return this.repository.findOne({
+      where: { id },
+    });
   }
 
   update(id: number, updateProductDto: UpdateProductDto) {
-    return `This action updates a #${id} product`;
+    return this.repository.update(updateProductDto, {
+      where: { id },
+    });
   }
 
   remove(id: number) {
-    return `This action removes a #${id} product`;
+    return this.repository.destroy({
+      where: { id },
+    });
   }
 }
