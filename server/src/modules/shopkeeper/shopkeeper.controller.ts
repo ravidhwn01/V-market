@@ -23,7 +23,7 @@ export class ShopkeeperController {
 
   @Get()
   findAll() {
-    return this.shopkeeperService.findAll();
+    return this.shopkeeperService.getAllWithProducts();
   }
 
   @Get(':id')

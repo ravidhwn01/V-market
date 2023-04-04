@@ -3,6 +3,7 @@ import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
 import { Repository, Sequelize } from 'sequelize-typescript';
 import { ProductSchema } from 'src/schemas/product.schema';
+import { ShopkeeperSchema } from 'src/schemas/shopkeeper.schema';
 
 @Injectable()
 export class ProductService {
@@ -17,6 +18,12 @@ export class ProductService {
 
   findAll() {
     return this.repository.findAll();
+  }
+
+  getAllWithShopKeeper() {
+    return this.repository.findAll({
+      include: [ShopkeeperSchema],
+    });
   }
 
   findOne(id: number) {
