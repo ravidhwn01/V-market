@@ -12,7 +12,7 @@ export class ShopkeeperService {
   }
 
   create(createShopkeeperDto: CreateShopkeeperDto) {
-    return this.repository.create(createShopkeeperDto as any);
+    return this.repository.create(createShopkeeperDto);
   }
 
   findAll() {

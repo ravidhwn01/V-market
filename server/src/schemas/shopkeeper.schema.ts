@@ -1,7 +1,8 @@
 import { Column, Model, Table } from 'sequelize-typescript';
+import { IShopkeeper } from 'src/interfaces/shopkeeper.interface';
 
 @Table
-export class ShopkeeperSchema extends Model {
+export class ShopkeeperSchema extends Model<IShopkeeper> {
   @Column
   first_name: string;
 

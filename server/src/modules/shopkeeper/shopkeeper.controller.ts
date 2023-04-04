@@ -14,7 +14,8 @@ import { UpdateShopkeeperDto } from './dto/update-shopkeeper.dto';
 
 @Controller('shopkeeper')
 export class ShopkeeperController {
-  constructor(private readonly shopkeeperService: ShopkeeperService) {}
+  //
+  constructor(private shopkeeperService: ShopkeeperService) {}
 
   @Post()
   create(@Body() createShopkeeperDto: CreateShopkeeperDto) {
