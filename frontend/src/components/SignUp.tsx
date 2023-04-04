@@ -107,7 +107,7 @@ function SignUp() {
             )}
           </FormControl>
           <Button w="100%" mt={4} bg="#aac6ca" type="submit">
-            Submit
+            Sign Up
           </Button>
         </Flex>
       </form>

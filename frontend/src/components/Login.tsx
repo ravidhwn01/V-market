@@ -62,7 +62,7 @@ function Login() {
           </FormControl>
 
           <Button w="100%" mt={4} bg="#aac6ca" type="submit">
-            Submit
+            Login
           </Button>
         </Flex>
       </form>
