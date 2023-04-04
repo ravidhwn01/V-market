@@ -1,5 +1,6 @@
 import { Module } from '@nestjs/common';
 import { SequelizeModule } from '@nestjs/sequelize';
+import { ShopkeeperSchema } from 'src/schemas/shopkeeper.schema';
 
 @Module({
   imports: [
@@ -9,7 +10,7 @@ import { SequelizeModule } from '@nestjs/sequelize';
       password: 'postgres',
       username: 'postgres',
       port: 5002,
-      models: [],
+      models: [ShopkeeperSchema],
       autoLoadModels: true,
     }),
   ],

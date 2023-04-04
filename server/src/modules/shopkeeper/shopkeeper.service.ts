@@ -1,26 +1,45 @@
 import { Injectable } from '@nestjs/common';
 import { CreateShopkeeperDto } from './dto/create-shopkeeper.dto';
 import { UpdateShopkeeperDto } from './dto/update-shopkeeper.dto';
+import { Repository, Sequelize } from 'sequelize-typescript';
+import { ShopkeeperSchema } from 'src/schemas/shopkeeper.schema';
 
 @Injectable()
 export class ShopkeeperService {
+  private repository: Repository<ShopkeeperSchema>;
+  constructor(private sequelize: Sequelize) {
+    this.repository = this.sequelize.getRepository(ShopkeeperSchema);
+  }
+
   create(createShopkeeperDto: CreateShopkeeperDto) {
-    return 'This action adds a new shopkeeper';
+    return this.repository.create(createShopkeeperDto as any);
   }
 
   findAll() {
-    return `This action returns all shopkeeper`;
+    return this.repository.findAll();
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} shopkeeper`;
+    return this.repository.findOne({
+      where: {
+        id,
+      },
+    });
   }
 
   update(id: number, updateShopkeeperDto: UpdateShopkeeperDto) {
-    return `This action updates a #${id} shopkeeper`;
+    return this.repository.update(updateShopkeeperDto, {
+      where: {
+        id,
+      },
+    });
   }
 
   remove(id: number) {
-    return `This action removes a #${id} shopkeeper`;
+    return this.repository.destroy({
+      where: {
+        id,
+      },
+    });
   }
 }
