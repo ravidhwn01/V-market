@@ -14,7 +14,7 @@ function AllShops() {
         m="8"
         justifyContent={"center"}
       >
-        {_.map(Shops, (item) => {
+        {_.map(Shops, (item, index) => {
           return (
             <>
               <GridItem
@@ -23,6 +23,7 @@ function AllShops() {
                 h="100%"
                 boxShadow={"2xl"}
                 borderRadius="8px"
+                key={index}
               >
                 <Image src={item.imgUrl} />
 
