@@ -26,4 +26,7 @@ export class ProductSchema extends Model<IProduct> {
 
   @Column
   description: string;
+
+  @Column
+  productImageUrl: string;
 }

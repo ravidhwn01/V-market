@@ -4,6 +4,7 @@ export interface IProduct {
   productName: string;
   quantity: number;
   description: string;
+  productImageUrl: string;
   updatedAt: string;
   createdAt: string;
 }
