@@ -2,12 +2,9 @@ import { Module } from '@nestjs/common';
 import { SequelizeModule } from '@nestjs/sequelize';
 import { ProductSchema } from 'src/schemas/product.schema';
 import { ShopkeeperSchema } from 'src/schemas/shopkeeper.schema';
-<<<<<<< HEAD
 // The @Module() decorator is used to define a module in NestJS, which is a way to organize code into cohesive units
-=======
 import { TradeSchema } from 'src/schemas/trade.schema';
 
->>>>>>> web-server
 @Module({
   imports: [
     SequelizeModule.forRoot({
