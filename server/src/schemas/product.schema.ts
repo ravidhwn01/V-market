@@ -2,12 +2,15 @@ import {
   BelongsTo,
   Column,
   ForeignKey,
+  HasOne,
   Model,
   Table,
 } from 'sequelize-typescript';
 import { IProduct } from 'src/interfaces/product.interface';
 import { ShopkeeperSchema } from './shopkeeper.schema';
 import { Shopkeeper } from 'src/modules/shopkeeper/entities/shopkeeper.entity';
+import { TradeSchema } from './trade.schema';
+import { Trade } from 'src/modules/trade/entities/trade.entity';
 
 @Table
 export class ProductSchema extends Model<IProduct> {
@@ -29,4 +32,7 @@ export class ProductSchema extends Model<IProduct> {
 
   @Column
   productImageUrl: string;
+
+  @HasOne(() => TradeSchema)
+  trade: Trade;
 }

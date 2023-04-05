@@ -3,6 +3,8 @@ import { CreateTradeDto } from './dto/create-trade.dto';
 import { UpdateTradeDto } from './dto/update-trade.dto';
 import { Repository, Sequelize } from 'sequelize-typescript';
 import { TradeSchema } from 'src/schemas/trade.schema';
+import { ProductSchema } from 'src/schemas/product.schema';
+import { ShopkeeperSchema } from 'src/schemas/shopkeeper.schema';
 
 @Injectable()
 export class TradeService {
@@ -17,7 +19,11 @@ export class TradeService {
   findAll() {
     return this.repository.findAll();
   }
-
+  getProductWithTrade() {
+    return this.repository.findAll({
+      include: [ProductSchema, ShopkeeperSchema],
+    });
+  }
   findOne(id: number) {
     return this.repository.findOne({
       where: { id },

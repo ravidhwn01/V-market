@@ -17,6 +17,7 @@ function Navbar() {
       p="6"
       fontSize={"2xl"}
       flexDir={showNavbarPosition ? "row" : "column"}
+      bg={"#aac6ca"}
     >
       <Flex gap="5">
         <Image

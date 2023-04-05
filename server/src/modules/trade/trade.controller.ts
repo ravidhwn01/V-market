@@ -17,12 +17,13 @@ export class TradeController {
 
   @Post()
   create(@Body() createTradeDto: CreateTradeDto) {
+    console.log({ createTradeDto });
     return this.tradeService.create(createTradeDto);
   }
 
   @Get()
   findAll() {
-    return this.tradeService.findAll();
+    return this.tradeService.getProductWithTrade();
   }
 
   @Get(':id')

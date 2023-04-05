@@ -27,29 +27,27 @@ function ListOfProducts() {
       >
         {_.map(data, (product, index) => {
           return (
-            <>
-              <GridItem
-                p="6"
-                w="100%"
-                h="100%"
-                boxShadow={"2xl"}
-                borderRadius="8px"
-                key={index}
-              >
-                <Image src={product.productImageUrl} alt="loading..." />
+            <GridItem
+              p="6"
+              w="100%"
+              h="100%"
+              boxShadow={"2xl"}
+              borderRadius="8px"
+              key={product.shopkeeperId}
+            >
+              <Image src={product.productImageUrl} alt="loading..." />
 
-                <Text fontSize={"2xl"} fontWeight="bold">
-                  {product.productName}
-                </Text>
-                <Text color="#7A7A7A">{product.description} </Text>
-                <Flex justifyContent={"space-between"}>
-                  <Button bg="none">
-                    <span>Quantity: </span> {product.quantity}
-                  </Button>
-                  <Button bg={"#aac6ca"}> Export </Button>
-                </Flex>
-              </GridItem>
-            </>
+              <Text fontSize={"2xl"} fontWeight="bold">
+                {product.productName}
+              </Text>
+              <Text color="#7A7A7A">{product.description} </Text>
+              <Flex justifyContent={"space-between"}>
+                <Button bg="none">
+                  <span>Quantity: </span> {product.quantity}
+                </Button>
+                <Button bg={"#aac6ca"}> Export </Button>
+              </Flex>
+            </GridItem>
           );
         })}
       </Grid>

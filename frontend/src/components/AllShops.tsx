@@ -21,29 +21,27 @@ function AllShops() {
         m="8"
         justifyContent={"center"}
       >
-        {_.map(data, (shop, index) => {
+        {_.map(data, (shop) => {
           return (
-            <>
-              <GridItem
-                p="6"
-                w="100%"
-                h="100%"
-                boxShadow={"2xl"}
-                borderRadius="8px"
-                key={index}
-              >
-                <Image src={shop.shopImageUrl} />
+            <GridItem
+              p="6"
+              w="100%"
+              h="100%"
+              boxShadow={"2xl"}
+              borderRadius="8px"
+              key={shop.id}
+            >
+              <Image src={shop.shopImageUrl} />
 
-                <Text fontSize={"2xl"} fontWeight="bold">
-                  {shop.shopName}
-                </Text>
-                <Text color="#7A7A7A">{shop.shopDescription} </Text>
-                <Button my="2" textAlign={"center"} bg="#aac6ca" size={"sm"}>
-                  {" "}
-                  <Link to={`/listofproducts/${shop.id}`}> Visit Shop </Link>
-                </Button>
-              </GridItem>
-            </>
+              <Text fontSize={"2xl"} fontWeight="bold">
+                {shop.shopName}
+              </Text>
+              <Text color="#7A7A7A">{shop.shopDescription} </Text>
+              <Button my="2" textAlign={"center"} bg="#aac6ca" size={"sm"}>
+                {" "}
+                <Link to={`/listofproducts/${shop.id}`}> Visit Shop </Link>
+              </Button>
+            </GridItem>
           );
         })}
       </Grid>

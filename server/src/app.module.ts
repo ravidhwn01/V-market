@@ -5,9 +5,10 @@ import { ShopkeeperModule } from './modules/shopkeeper/shopkeeper.module';
 import { DatabaseModule } from './database/database.module';
 import { ProductModule } from './modules/product/product.module';
 import { TradeModule } from './modules/trade/trade.module';
+import { AuthModule } from './modules/auth/auth.module';
 
 @Module({
-  imports: [ShopkeeperModule, DatabaseModule, ProductModule, TradeModule],
+  imports: [ShopkeeperModule, DatabaseModule, ProductModule, TradeModule, AuthModule],
   controllers: [AppController],
   providers: [AppService],
 })
