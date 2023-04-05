@@ -12,3 +12,9 @@ export const getAllProduct = async (shopId: string) => {
   console.log(products.data);
   return products.data;
 };
+
+export const updateProduct = async (id: number) => {
+  const updatedProductResponse = await axiosInstance.patch(`product/:${id}`);
+  console.log(updatedProductResponse.data);
+  return updatedProductResponse.data;
+};

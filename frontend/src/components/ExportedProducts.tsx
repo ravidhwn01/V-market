@@ -1,19 +1,27 @@
 import { Button } from "@chakra-ui/button";
 import { Flex, Grid, GridItem, Heading, Text } from "@chakra-ui/layout";
 import * as _ from "lodash";
-import { useQuery } from "react-query";
+import { useMutation, useQuery, useQueryClient } from "react-query";
 import { getAllExportedProducts } from "../api/trade.api";
 
 import { Image } from "@chakra-ui/image";
 import { IExportedProduct } from "../interfaces/exportedProduct.interface";
 import Navbar from "./Navbar";
+import { updateProduct } from "../api/product.api";
+import { useNavigate } from "react-router";
 
 function ExportedProducts() {
+  const queryClient = useQueryClient();
+  const navigate = useNavigate();
   const { data } = useQuery<IExportedProduct[]>(
     "exportedProduct",
     getAllExportedProducts
   );
-  console.log(data);
+
+  const updateProductToImport = useMutation(updateProduct, {
+    onSuccess: () => {},
+  });
+
   return (
     <>
       <Navbar />
@@ -22,7 +30,7 @@ function ExportedProducts() {
           You can import products to your shop by one click
         </Heading>
         <Grid
-          templateColumns="repeat(auto-fit, 290px)"
+          templateColumns="repeat(auto-fit, 315px)"
           gap={6}
           m="8"
           justifyContent={"center"}

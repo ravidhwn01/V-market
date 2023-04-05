@@ -12,6 +12,7 @@ function Navbar() {
   const [showNavbarPosition] = useMediaQuery("(min-width: 700px)");
   return (
     <Flex
+      // position="fixed"
       justifyContent={"space-between"}
       w="100%"
       p="6"
@@ -32,27 +33,27 @@ function Navbar() {
         </Text>
       </Flex>
 
-      <Flex gap="5" flexWrap="wrap">
+      <Flex gap="6" flexWrap="wrap">
         <Link to={"/"}>
           {" "}
-          <Heading fontSize={"3xl"} fontWeight={"normal"}>
+          <Heading fontSize={"2xl"} fontWeight={"normal"}>
             {" "}
             Home{" "}
           </Heading>
         </Link>
         <Link to={"/exportedproducts"}>
           {" "}
-          <Heading fontSize={"3xl"} fontWeight={"normal"}>
+          <Heading fontSize={"2xl"} fontWeight={"normal"}>
             Export/Products
           </Heading>
         </Link>
         <Link to={"/signup"}>
-          <Heading fontSize={"3xl"} fontWeight={"medium"}>
+          <Heading fontSize={"2xl"} fontWeight={"medium"}>
             Sign Up
           </Heading>
         </Link>
         <Link to={"/login"}>
-          <Heading fontSize={"3xl"} fontWeight={"medium"}>
+          <Heading fontSize={"2xl"} fontWeight={"medium"}>
             Login
           </Heading>
         </Link>

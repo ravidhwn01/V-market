@@ -1,4 +1,11 @@
-import { Button, Grid, GridItem, Image, Text } from "@chakra-ui/react";
+import {
+  Button,
+  Grid,
+  GridItem,
+  Image,
+  Text,
+  useMediaQuery,
+} from "@chakra-ui/react";
 import _ from "lodash";
 import { useQuery } from "react-query";
 import { Link } from "react-router-dom";
@@ -11,15 +18,18 @@ function AllShops() {
   const { data } = useQuery<IShopWithProduct[]>("shops", getShopkeeper);
   // This key is used to cache the result of the query so that if the same key is used again later, the cached result can be returned instead of making a new request.
   console.log(data);
+  const [isCardViewInCenter] = useMediaQuery("(min-width: 1200px)");
 
   return (
     <>
       <Navbar />
       <Grid
-        templateColumns="repeat(auto-fit, 290px)"
+        templateColumns="repeat(auto-fit, 315px)"
+        // justifySelf="flex-end"
         gap={6}
-        m="8"
-        justifyContent={"center"}
+        mx="24"
+        my="8"
+        justifyContent={isCardViewInCenter ? "flex-start" : "center"}
       >
         {_.map(data, (shop) => {
           return (
@@ -27,6 +37,7 @@ function AllShops() {
               p="6"
               w="100%"
               h="100%"
+              mx="15"
               boxShadow={"2xl"}
               borderRadius="8px"
               key={shop.id}
