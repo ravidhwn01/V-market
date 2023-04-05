@@ -11,13 +11,14 @@ import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { IShopkeeper, ShopkeeperSchema } from "../schemas/shopkeeper.schema";
 
 import { yupResolver } from "@hookform/resolvers/yup";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useMutation, useQueryClient } from "react-query";
 import { addShopkeeper } from "../api/shopkeeper.api";
 import Navbar from "./Navbar";
 
 function SignUp() {
   const queryClient = useQueryClient();
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -33,7 +34,8 @@ function SignUp() {
 
   const mutation = useMutation(addShopkeeper, {
     onSuccess: () => {
-      console.log("created shopkeeper");
+      queryClient.refetchQueries("getShopkeeper");
+      navigate("/");
     },
   });
 

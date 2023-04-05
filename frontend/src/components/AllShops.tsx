@@ -9,7 +9,7 @@ import { IShopkeeper } from "../schemas/shopkeeper.schema";
 
 function AllShops() {
   const { data, isLoading, isError } = useQuery<IShopkeeper[]>(
-    "products",
+    "shops",
     getShopkeeper
   );
   console.log(data);

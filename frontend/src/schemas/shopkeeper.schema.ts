@@ -21,6 +21,7 @@ export const ProductSchema = yup.object({
   productName: yup.string().required("Please enter product name"),
   description: yup.string().required("Please enter description"),
   quantity: yup.number().required("Please enter quantity"),
+  shopkeeperId: yup.number(),
 });
 
 export type IProduct = yup.InferType<typeof ProductSchema>;

@@ -1,11 +1,19 @@
-import { Grid, GridItem, Image, Text } from "@chakra-ui/react";
+import { Button, Flex, Grid, GridItem, Image, Text } from "@chakra-ui/react";
 import _ from "lodash";
 
 import { Products } from "../mocks/listOfProduct.mock";
 import Navbar from "./Navbar";
 import AddProduct from "./AddProduct";
+import { useQuery } from "react-query";
+import { getAllProduct } from "../api/product.api";
+import { IProduct } from "../schemas/shopkeeper.schema";
 
 function ListOfProducts() {
+  const { data, isError, isLoading } = useQuery<IProduct[]>(
+    "product",
+    getAllProduct
+  );
+  console.log(data);
   return (
     <>
       <Navbar />
@@ -17,7 +25,7 @@ function ListOfProducts() {
         m="8"
         justifyContent={"center"}
       >
-        {_.map(Products, (item, index) => {
+        {_.map(data, (product, index) => {
           return (
             <>
               <GridItem
@@ -28,12 +36,18 @@ function ListOfProducts() {
                 borderRadius="8px"
                 key={index}
               >
-                <Image src={item.imgUrl} />
+                {/* <Image src={product.} /> */}
 
                 <Text fontSize={"2xl"} fontWeight="bold">
-                  {item.productName}
+                  {product.productName}
                 </Text>
-                <Text color="#7A7A7A">{item.des} </Text>
+                <Text color="#7A7A7A">{product.description} </Text>
+                <Flex justifyContent={"space-between"}>
+                  <Button>
+                    <span>Quantity: </span> {product.quantity}
+                  </Button>
+                  <Button> Export </Button>
+                </Flex>
               </GridItem>
             </>
           );

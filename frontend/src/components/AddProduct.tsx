@@ -10,8 +10,13 @@ import {
 import { FieldValues, useForm } from "react-hook-form";
 import { IProduct, ProductSchema } from "../schemas/shopkeeper.schema";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useMutation, useQueryClient } from "react-query";
+import { addProduct } from "../api/product.api";
+import { useNavigate } from "react-router";
 
 function AddProduct() {
+  const queryClient = useQueryClient();
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -21,8 +26,15 @@ function AddProduct() {
   });
   const onHandle = (product: IProduct) => {
     console.log(product, "clicked");
+    addProducts.mutate(product);
   };
 
+  const addProducts = useMutation(addProduct, {
+    // onSuccess: () => {
+    //   queryClient.refetchQueries("getAllproduct");
+    //   navigate("/listofproducts");
+    // },
+  });
   return (
     <>
       <Heading textAlign={"center"} m="3">
