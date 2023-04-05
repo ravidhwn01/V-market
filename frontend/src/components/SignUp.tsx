@@ -7,12 +7,12 @@ import {
   Heading,
   Input,
 } from "@chakra-ui/react";
-import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { IShopkeeper, ShopkeeperSchema } from "../schemas/shopkeeper.schema";
 
 import { yupResolver } from "@hookform/resolvers/yup";
-import { Link, useNavigate } from "react-router-dom";
 import { useMutation, useQueryClient } from "react-query";
+import { Link, useNavigate } from "react-router-dom";
 import { addShopkeeper } from "../api/shopkeeper.api";
 import Navbar from "./Navbar";
 
@@ -34,7 +34,7 @@ function SignUp() {
 
   const mutation = useMutation(addShopkeeper, {
     onSuccess: () => {
-      queryClient.refetchQueries("getShopkeeper");
+      queryClient.refetchQueries("shops");
       navigate("/");
     },
   });

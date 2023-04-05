@@ -7,7 +7,9 @@ import { IShopWithProduct } from "../interfaces/shop.interface";
 import Navbar from "./Navbar";
 
 function AllShops() {
+  // useQuery hook.
   const { data } = useQuery<IShopWithProduct[]>("shops", getShopkeeper);
+  // This key is used to cache the result of the query so that if the same key is used again later, the cached result can be returned instead of making a new request.
   console.log(data);
 
   return (
