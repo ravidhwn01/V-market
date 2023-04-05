@@ -4,16 +4,17 @@ import _ from "lodash";
 import { useQuery } from "react-query";
 import { useParams } from "react-router";
 import { getAllProduct } from "../api/product.api";
-import { IProduct } from "../schemas/shopkeeper.schema";
+import { Product } from "../interfaces/shop.interface";
 import AddProduct from "./AddProduct";
 import Navbar from "./Navbar";
 
 function ListOfProducts() {
   const { shopId } = useParams();
-  const { data } = useQuery<IProduct[]>(`products-${shopId}`, () => {
+  const { data } = useQuery<Product[]>(`products-${shopId}`, () => {
     return getAllProduct(shopId!);
     // we are certain that shopId will not be null or undefined at this point.
   });
+
   return (
     <>
       <Navbar />

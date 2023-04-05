@@ -5,6 +5,7 @@ import SignUp from "./components/SignUp";
 import PageNotFound from "./components/PageNotFound";
 import AllShops from "./components/AllShops";
 import ListOfProducts from "./components/ListOfProducts";
+import ExportedProducts from "./components/ExportedProducts";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/allshops" element={<AllShops />} />
+          <Route path="/exportedproducts" element={<ExportedProducts />} />
           <Route path="/listofproducts/:shopId" element={<ListOfProducts />} />
           <Route path="*" element={<PageNotFound />} />
         </Routes>

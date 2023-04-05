@@ -40,6 +40,12 @@ function Navbar() {
             Home{" "}
           </Heading>
         </Link>
+        <Link to={"/exportedproducts"}>
+          {" "}
+          <Heading fontSize={"3xl"} fontWeight={"normal"}>
+            Export/Products
+          </Heading>
+        </Link>
         <Link to={"/signup"}>
           <Heading fontSize={"3xl"} fontWeight={"medium"}>
             Sign Up
