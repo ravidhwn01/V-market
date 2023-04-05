@@ -1,4 +1,11 @@
-import { Box, Flex, Image, Text, useMediaQuery } from "@chakra-ui/react";
+import {
+  Box,
+  Flex,
+  Heading,
+  Image,
+  Text,
+  useMediaQuery,
+} from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 
 function Navbar() {
@@ -25,10 +32,23 @@ function Navbar() {
       </Flex>
 
       <Flex gap="5" flexWrap="wrap">
-        <Link to={"/"}> Home </Link>
-        {/* <Link to={"/listofproducts"}>All Products</Link> */}
-        <Link to={"/signup"}>Sign Up</Link>
-        <Link to={"/login"}>Login</Link>
+        <Link to={"/"}>
+          {" "}
+          <Heading fontSize={"3xl"} fontWeight={"normal"}>
+            {" "}
+            Home{" "}
+          </Heading>
+        </Link>
+        <Link to={"/signup"}>
+          <Heading fontSize={"3xl"} fontWeight={"medium"}>
+            Sign Up
+          </Heading>
+        </Link>
+        <Link to={"/login"}>
+          <Heading fontSize={"3xl"} fontWeight={"medium"}>
+            Login
+          </Heading>
+        </Link>
       </Flex>
     </Flex>
   );

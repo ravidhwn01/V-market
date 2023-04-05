@@ -52,8 +52,8 @@ function SignUp() {
           w={"50%"}
           m={"auto"}
         >
-          <FormControl isInvalid={!!errors["firstName"]?.message}>
-            <FormLabel my="1">First Name</FormLabel>
+          <FormControl mb="3" isInvalid={!!errors["firstName"]?.message}>
+            <FormLabel margin={0}>First Name</FormLabel>
             <Input
               type="text"
               placeholder="Enter Your First Name"
@@ -65,8 +65,8 @@ function SignUp() {
               </FormErrorMessage>
             )}
           </FormControl>
-          <FormControl isInvalid={!!errors["lastName"]?.message}>
-            <FormLabel my="1">Last Name</FormLabel>
+          <FormControl mb="3" isInvalid={!!errors["lastName"]?.message}>
+            <FormLabel margin={0}>Last Name</FormLabel>
             <Input
               type="text"
               placeholder="Enter Your Last Name"
@@ -79,8 +79,8 @@ function SignUp() {
               </FormErrorMessage>
             )}
           </FormControl>
-          <FormControl isInvalid={!!errors["email"]?.message}>
-            <FormLabel my="1">Email</FormLabel>
+          <FormControl mb="3" isInvalid={!!errors["email"]?.message}>
+            <FormLabel margin={0}>Email</FormLabel>
             <Input
               type="email"
               placeholder="Enter Your Email"
@@ -93,8 +93,8 @@ function SignUp() {
               </FormErrorMessage>
             )}
           </FormControl>
-          <FormControl isInvalid={!!errors["password"]?.message}>
-            <FormLabel my="1">Password</FormLabel>
+          <FormControl mb="3" isInvalid={!!errors["password"]?.message}>
+            <FormLabel margin={0}>Password</FormLabel>
             <Input
               type="password"
               placeholder="Enter Your Password"
@@ -107,8 +107,8 @@ function SignUp() {
               </FormErrorMessage>
             )}
           </FormControl>
-          <FormControl isInvalid={!!errors["confirmPassword"]?.message}>
-            <FormLabel my="1">Confirm Password</FormLabel>
+          <FormControl mb="3" isInvalid={!!errors["confirmPassword"]?.message}>
+            <FormLabel margin={0}>Confirm Password</FormLabel>
             <Input
               type="password"
               placeholder="Enter Your Confirm Password"
@@ -122,8 +122,8 @@ function SignUp() {
             )}
           </FormControl>
 
-          <FormControl isInvalid={!!errors["shopName"]?.message}>
-            <FormLabel my="1">Shop Name</FormLabel>
+          <FormControl mb="3" isInvalid={!!errors["shopName"]?.message}>
+            <FormLabel margin={0}>Shop Name</FormLabel>
             <Input
               type="text"
               placeholder="Enter Your Shop Name"
@@ -137,8 +137,8 @@ function SignUp() {
             )}
           </FormControl>
 
-          <FormControl isInvalid={!!errors["shopDescription"]?.message}>
-            <FormLabel my="1">Shop Description</FormLabel>
+          <FormControl mb="3" isInvalid={!!errors["shopDescription"]?.message}>
+            <FormLabel margin={0}>Shop Description</FormLabel>
             <Input
               type="text"
               placeholder="Enter Your Shop Description"
@@ -153,7 +153,7 @@ function SignUp() {
           </FormControl>
 
           <FormControl isInvalid={!!errors["shopImageUrl"]?.message}>
-            <FormLabel my="1">Shop Image Url</FormLabel>
+            <FormLabel margin={0}>Shop Image Url</FormLabel>
             <Input
               type="text"
               placeholder="Enter Your Shop Image Url"
@@ -173,7 +173,7 @@ function SignUp() {
         </Flex>
       </form>
 
-      <Heading textAlign={"center"} mt={"2"} size={"sm"}>
+      <Heading textAlign={"center"} my={"3"} size={"sm"}>
         {" "}
         Already have an account !{" "}
         <Link to={"/login"} color="teal.500">

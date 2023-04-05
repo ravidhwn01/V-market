@@ -34,8 +34,8 @@ function Login() {
           w={"50%"}
           m={"auto"}
         >
-          <FormControl isInvalid={!!errors["email"]?.message}>
-            <FormLabel my="1">Email</FormLabel>
+          <FormControl mb="3" isInvalid={!!errors["email"]?.message}>
+            <FormLabel margin={0}>Email</FormLabel>
             <Input
               type="email"
               placeholder="Enter Your Email"
@@ -49,7 +49,7 @@ function Login() {
             )}
           </FormControl>
           <FormControl isInvalid={!!errors["password"]?.message}>
-            <FormLabel my="1">Password</FormLabel>
+            <FormLabel margin={0}>Password</FormLabel>
             <Input
               type="password"
               placeholder="Enter Your Password"
@@ -72,7 +72,6 @@ function Login() {
         {" "}
         Create new account!{" "}
         <Link to={"/signup"} color="teal.500">
-          {" "}
           Sign Up{" "}
         </Link>
       </Heading>
