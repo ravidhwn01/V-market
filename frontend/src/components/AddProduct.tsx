@@ -12,11 +12,12 @@ import { IProduct, ProductSchema } from "../schemas/shopkeeper.schema";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useMutation, useQueryClient } from "react-query";
 import { addProduct } from "../api/product.api";
-import { useNavigate } from "react-router";
+import { useNavigate, useParams } from "react-router";
 
 function AddProduct() {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
+  const { shopId } = useParams();
   const {
     register,
     handleSubmit,
@@ -25,14 +26,13 @@ function AddProduct() {
     resolver: yupResolver(ProductSchema),
   });
   const onHandle = (product: IProduct) => {
-    console.log(product, "clicked");
-    addProducts.mutate(product);
+    console.log(product, shopId);
+    addProducts.mutate({ ...product, shopkeeperId: parseInt(shopId!) });
   };
 
   const addProducts = useMutation(addProduct, {
     onSuccess: () => {
-      queryClient.refetchQueries("getAllproduct");
-      navigate("/listofproducts");
+      queryClient.refetchQueries(`products-${shopId}`);
     },
   });
   return (

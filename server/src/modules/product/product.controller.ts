@@ -25,6 +25,11 @@ export class ProductController {
     return this.productService.getAllWithShopKeeper();
   }
 
+  @Get('/shopkeeper/:shopkeeperId')
+  getAllForShopKeeper(@Param('shopkeeperId') shopkeeperId: string) {
+    return this.productService.getAllForShopKeeper(+shopkeeperId);
+  }
+
   @Get(':id')
   findOne(@Param('id') id: number) {
     return this.productService.findOne(+id);

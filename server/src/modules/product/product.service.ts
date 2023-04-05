@@ -26,6 +26,14 @@ export class ProductService {
     });
   }
 
+  getAllForShopKeeper(shopkeeperId: number) {
+    return this.repository.findAll({
+      where: {
+        shopkeeperId: shopkeeperId,
+      },
+    });
+  }
+
   findOne(id: number) {
     return this.repository.findOne({
       where: { id },

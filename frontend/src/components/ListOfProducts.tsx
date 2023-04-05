@@ -1,19 +1,19 @@
 import { Button, Flex, Grid, GridItem, Image, Text } from "@chakra-ui/react";
 import _ from "lodash";
 
-import { Products } from "../mocks/listOfProduct.mock";
-import Navbar from "./Navbar";
-import AddProduct from "./AddProduct";
 import { useQuery } from "react-query";
+import { useParams } from "react-router";
 import { getAllProduct } from "../api/product.api";
 import { IProduct } from "../schemas/shopkeeper.schema";
+import AddProduct from "./AddProduct";
+import Navbar from "./Navbar";
 
 function ListOfProducts() {
-  const { data, isError, isLoading } = useQuery<IProduct[]>(
-    "product",
-    getAllProduct
-  );
-  console.log(data);
+  const { shopId } = useParams();
+  const { data } = useQuery<IProduct[]>(`products-${shopId}`, () => {
+    return getAllProduct(shopId!);
+    // we are certain that shopId will not be null or undefined at this point.
+  });
   return (
     <>
       <Navbar />

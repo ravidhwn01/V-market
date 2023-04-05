@@ -1,17 +1,13 @@
-import { Button, Grid, GridItem, Heading, Image, Text } from "@chakra-ui/react";
+import { Button, Grid, GridItem, Image, Text } from "@chakra-ui/react";
 import _ from "lodash";
-import { Shops } from "../mocks/shop.mock";
-import { Link } from "react-router-dom";
-import Navbar from "./Navbar";
 import { useQuery } from "react-query";
+import { Link } from "react-router-dom";
 import { getShopkeeper } from "../api/shopkeeper.api";
-import { IShopkeeper } from "../schemas/shopkeeper.schema";
+import { IShopWithProduct } from "../interfaces/shop.interface";
+import Navbar from "./Navbar";
 
 function AllShops() {
-  const { data, isLoading, isError } = useQuery<IShopkeeper[]>(
-    "shops",
-    getShopkeeper
-  );
+  const { data } = useQuery<IShopWithProduct[]>("shops", getShopkeeper);
   console.log(data);
 
   return (
@@ -42,7 +38,7 @@ function AllShops() {
                 <Text color="#7A7A7A">{shop.shopDescription} </Text>
                 <Button my="2" textAlign={"center"} bg="#aac6ca" size={"sm"}>
                   {" "}
-                  <Link to={"/listofproducts"}> Visit Shop </Link>
+                  <Link to={`/listofproducts/${shop.id}`}> Visit Shop </Link>
                 </Button>
               </GridItem>
             </>

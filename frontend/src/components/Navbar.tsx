@@ -26,7 +26,7 @@ function Navbar() {
 
       <Flex gap="5" flexWrap="wrap">
         <Link to={"/"}> Home </Link>
-        <Link to={"listofproducts"}>All Products</Link>
+        {/* <Link to={"/listofproducts"}>All Products</Link> */}
         <Link to={"/signup"}>Sign Up</Link>
         <Link to={"/login"}>Login</Link>
       </Flex>

@@ -16,7 +16,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/allshops" element={<AllShops />} />
-          <Route path="/listofproducts" element={<ListOfProducts />} />
+          <Route path="/listofproducts/:shopId" element={<ListOfProducts />} />
           <Route path="*" element={<PageNotFound />} />
         </Routes>
       </BrowserRouter>
