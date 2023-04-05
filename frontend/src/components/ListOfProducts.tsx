@@ -36,17 +36,17 @@ function ListOfProducts() {
                 borderRadius="8px"
                 key={index}
               >
-                {/* <Image src={product.} /> */}
+                <Image src={product.productImageUrl} alt="loading..." />
 
                 <Text fontSize={"2xl"} fontWeight="bold">
                   {product.productName}
                 </Text>
                 <Text color="#7A7A7A">{product.description} </Text>
                 <Flex justifyContent={"space-between"}>
-                  <Button>
+                  <Button bg="none">
                     <span>Quantity: </span> {product.quantity}
                   </Button>
-                  <Button> Export </Button>
+                  <Button bg={"#aac6ca"}> Export </Button>
                 </Flex>
               </GridItem>
             </>

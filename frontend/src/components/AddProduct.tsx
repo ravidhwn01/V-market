@@ -30,10 +30,10 @@ function AddProduct() {
   };
 
   const addProducts = useMutation(addProduct, {
-    // onSuccess: () => {
-    //   queryClient.refetchQueries("getAllproduct");
-    //   navigate("/listofproducts");
-    // },
+    onSuccess: () => {
+      queryClient.refetchQueries("getAllproduct");
+      navigate("/listofproducts");
+    },
   });
   return (
     <>
@@ -72,6 +72,20 @@ function AddProduct() {
               <FormErrorMessage>
                 {" "}
                 {errors["description"].message as any}{" "}
+              </FormErrorMessage>
+            )}
+          </FormControl>
+          <FormControl isInvalid={!!errors["productImageUrl"]?.message}>
+            <FormLabel my="1">Image url</FormLabel>
+            <Input
+              type="text"
+              placeholder="Enter Your product image url"
+              {...register("productImageUrl")}
+            />
+            {errors["productImageUrl"]?.message && (
+              <FormErrorMessage>
+                {" "}
+                {errors["productImageUrl"].message as any}{" "}
               </FormErrorMessage>
             )}
           </FormControl>

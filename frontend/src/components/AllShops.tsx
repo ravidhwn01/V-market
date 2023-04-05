@@ -40,7 +40,7 @@ function AllShops() {
                   {shop.shopName}
                 </Text>
                 <Text color="#7A7A7A">{shop.shopDescription} </Text>
-                <Button my="2" textAlign={"center"} bg={"blue.500"} size={"sm"}>
+                <Button my="2" textAlign={"center"} bg="#aac6ca" size={"sm"}>
                   {" "}
                   <Link to={"/listofproducts"}> Visit Shop </Link>
                 </Button>
