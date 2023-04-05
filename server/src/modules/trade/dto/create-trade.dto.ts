@@ -6,12 +6,8 @@ export class CreateTradeDto {
   productId: number;
 
   @IsNumber()
-  exportedBy: number;
+  exportedShopkeeperId: number;
 
   @IsNumber()
-  importedBy: number;
-
-  @IsNumber()
-  @IsNotEmpty()
-  quantity: number;
+  importedShopkeeperId: number;
 }

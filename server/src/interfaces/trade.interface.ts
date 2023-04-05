@@ -1,9 +1,8 @@
 export interface ITrade {
   id: number;
   productId: number;
-  exportedBy: number;
-  importedBy: number;
-  quantity: number;
+  exportedShopkeeperId: number;
+  importedShopkeeperId: number;
   updatedAt: string;
   createdAt: string;
 }

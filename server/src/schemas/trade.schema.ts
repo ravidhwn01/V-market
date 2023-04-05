@@ -23,14 +23,11 @@ export class TradeSchema extends Model<ITrade> {
 
   @ForeignKey(() => ShopkeeperSchema)
   @Column
-  shopkeeperId: number;
+  exportedShopkeeperId: number;
 
   @BelongsTo(() => ShopkeeperSchema)
   shopkeeper: Shopkeeper;
 
   @Column
-  importedBy: number;
-
-  @Column
-  quantity: number;
+  importedShopkeeperId: number;
 }
