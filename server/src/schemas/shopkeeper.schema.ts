@@ -7,10 +7,10 @@ import { Product } from 'src/modules/product/entities/product.entity';
 // Model is a   base class which provide  properties build-in sequelize to create a table
 export class ShopkeeperSchema extends Model<IShopkeeper> {
   @Column
-  first_name: string;
+  firstName: string;
 
   @Column
-  last_name: string;
+  lastName: string;
 
   @Column
   email: string;
@@ -19,7 +19,16 @@ export class ShopkeeperSchema extends Model<IShopkeeper> {
   password: string;
 
   @Column
-  confirm_password: string;
+  confirmPassword: string;
+
+  @Column
+  shopName: string;
+
+  @Column
+  shopDescription: string;
+
+  @Column
+  shopImageUrl: string;
 
   @HasMany(() => ProductSchema)
   products: Product[];

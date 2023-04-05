@@ -50,30 +50,30 @@ function SignUp() {
           w={"50%"}
           m={"auto"}
         >
-          <FormControl isInvalid={!!errors["first_name"]?.message}>
+          <FormControl isInvalid={!!errors["firstName"]?.message}>
             <FormLabel my="1">First Name</FormLabel>
             <Input
               type="text"
               placeholder="Enter Your First Name"
-              {...register("first_name")}
+              {...register("firstName")}
             />
-            {errors["first_name"]?.message && (
+            {errors["firstName"]?.message && (
               <FormErrorMessage>
-                {errors["first_name"].message as any}
+                {errors["firstName"].message as any}
               </FormErrorMessage>
             )}
           </FormControl>
-          <FormControl isInvalid={!!errors["last_name"]?.message}>
+          <FormControl isInvalid={!!errors["lastName"]?.message}>
             <FormLabel my="1">Last Name</FormLabel>
             <Input
               type="text"
               placeholder="Enter Your Last Name"
-              {...register("last_name")}
+              {...register("lastName")}
             />
-            {errors["last_name"]?.message && (
+            {errors["lastName"]?.message && (
               <FormErrorMessage>
                 {" "}
-                {errors["last_name"].message as any}{" "}
+                {errors["lastName"].message as any}{" "}
               </FormErrorMessage>
             )}
           </FormControl>
@@ -105,20 +105,66 @@ function SignUp() {
               </FormErrorMessage>
             )}
           </FormControl>
-          <FormControl isInvalid={!!errors["confirm_password"]?.message}>
+          <FormControl isInvalid={!!errors["confirmPassword"]?.message}>
             <FormLabel my="1">Confirm Password</FormLabel>
             <Input
               type="password"
               placeholder="Enter Your Confirm Password"
-              {...register("confirm_password")}
+              {...register("confirmPassword")}
             />
-            {errors["confirm_password"]?.message && (
+            {errors["confirmPassword"]?.message && (
               <FormErrorMessage>
                 {" "}
-                {errors["confirm_password"].message as any}{" "}
+                {errors["confirmPassword"].message as any}{" "}
               </FormErrorMessage>
             )}
           </FormControl>
+
+          <FormControl isInvalid={!!errors["shopName"]?.message}>
+            <FormLabel my="1">Shop Name</FormLabel>
+            <Input
+              type="text"
+              placeholder="Enter Your Shop Name"
+              {...register("shopName")}
+            />
+            {errors["shopName"]?.message && (
+              <FormErrorMessage>
+                {" "}
+                {errors["shopName"].message as any}{" "}
+              </FormErrorMessage>
+            )}
+          </FormControl>
+
+          <FormControl isInvalid={!!errors["shopDescription"]?.message}>
+            <FormLabel my="1">Shop Description</FormLabel>
+            <Input
+              type="text"
+              placeholder="Enter Your Shop Description"
+              {...register("shopDescription")}
+            />
+            {errors["shopDescription"]?.message && (
+              <FormErrorMessage>
+                {" "}
+                {errors["shopDescription"].message as any}{" "}
+              </FormErrorMessage>
+            )}
+          </FormControl>
+
+          <FormControl isInvalid={!!errors["shopImageUrl"]?.message}>
+            <FormLabel my="1">Shop Image Url</FormLabel>
+            <Input
+              type="text"
+              placeholder="Enter Your Shop Image Url"
+              {...register("shopImageUrl")}
+            />
+            {errors["shopImageUrl"]?.message && (
+              <FormErrorMessage>
+                {" "}
+                {errors["shopImageUrl"].message as any}{" "}
+              </FormErrorMessage>
+            )}
+          </FormControl>
+
           <Button w="100%" mt={4} bg="#aac6ca" type="submit">
             Sign Up
           </Button>

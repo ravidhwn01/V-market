@@ -3,8 +3,13 @@ import _ from "lodash";
 import { Shops } from "../mocks/shop.mock";
 import { Link } from "react-router-dom";
 import Navbar from "./Navbar";
+import { useQuery } from "react-query";
+import { getShopkeeper } from "../api/shopkeeper.api";
 
 function AllShops() {
+  const { data, isLoading, isError } = useQuery("products", getShopkeeper);
+  console.log(data);
+
   return (
     <>
       <Navbar />

@@ -5,6 +5,9 @@ export interface IShopkeeper {
   email: string;
   password: string;
   confirm_password: string;
+  shopName: string;
+  shopDescription: string;
+  shopImageUrl: string;
   updatedAt: string;
   createdAt: string;
 }

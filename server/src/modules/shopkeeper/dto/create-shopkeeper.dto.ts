@@ -20,4 +20,16 @@ export class CreateShopkeeperDto {
   @IsString()
   @IsNotEmpty()
   confirm_password: string;
+
+  @IsString()
+  @IsNotEmpty()
+  shopName: string;
+
+  @IsString()
+  @IsNotEmpty()
+  shopDescription: string;
+
+  @IsString()
+  @IsNotEmpty()
+  shopImageUrl: string;
 }

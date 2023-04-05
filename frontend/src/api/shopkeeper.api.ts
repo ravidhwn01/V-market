@@ -6,3 +6,9 @@ export const addShopkeeper = async (shopkeeper: IShopkeeper) => {
   console.log(response.data);
   return response.data;
 };
+
+export const getShopkeeper = async () => {
+  const shopkeeper = await axiosInstance.get("/shopkeeper");
+  console.log(shopkeeper.data);
+  return shopkeeper.data;
+};
