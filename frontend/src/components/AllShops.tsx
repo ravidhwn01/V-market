@@ -5,9 +5,13 @@ import { Link } from "react-router-dom";
 import Navbar from "./Navbar";
 import { useQuery } from "react-query";
 import { getShopkeeper } from "../api/shopkeeper.api";
+import { IShopkeeper } from "../schemas/shopkeeper.schema";
 
 function AllShops() {
-  const { data, isLoading, isError } = useQuery("products", getShopkeeper);
+  const { data, isLoading, isError } = useQuery<IShopkeeper[]>(
+    "products",
+    getShopkeeper
+  );
   console.log(data);
 
   return (
@@ -19,7 +23,7 @@ function AllShops() {
         m="8"
         justifyContent={"center"}
       >
-        {_.map(Shops, (item, index) => {
+        {_.map(data, (shop, index) => {
           return (
             <>
               <GridItem
@@ -30,12 +34,12 @@ function AllShops() {
                 borderRadius="8px"
                 key={index}
               >
-                <Image src={item.imgUrl} />
+                <Image src={shop.shopImageUrl} />
 
                 <Text fontSize={"2xl"} fontWeight="bold">
-                  {item.shopName}
+                  {shop.shopName}
                 </Text>
-                <Text color="#7A7A7A">{item.des} </Text>
+                <Text color="#7A7A7A">{shop.shopDescription} </Text>
                 <Button my="2" textAlign={"center"} bg={"blue.500"} size={"sm"}>
                   {" "}
                   <Link to={"/listofproducts"}> Visit Shop </Link>
