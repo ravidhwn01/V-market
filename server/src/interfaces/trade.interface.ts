@@ -2,7 +2,7 @@ export interface ITrade {
   id: number;
   productId: number;
   exportedShopkeeperId: number;
-  importedShopkeeperId: number;
+  importedShopkeeper: boolean;
   updatedAt: string;
   createdAt: string;
 }
