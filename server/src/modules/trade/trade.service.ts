@@ -7,6 +7,7 @@ import { ProductSchema } from 'src/schemas/product.schema';
 import { ShopkeeperSchema } from 'src/schemas/shopkeeper.schema';
 import { ProductService } from '../product/product.service';
 import { UpdateProductDto } from '../product/dto/update-product.dto';
+import { IImportTradeData } from 'src/interfaces/importTrade.interface';
 @Injectable()
 export class TradeService {
   private repository: Repository<TradeSchema>;
@@ -28,24 +29,24 @@ export class TradeService {
       include: [ProductSchema, ShopkeeperSchema],
     });
   }
-  async importedTrade(createTradeDto) {
-    console.log(createTradeDto);
+  async importedTrade(importTradeData: IImportTradeData) {
+    console.log(importTradeData);
     const importedProductData = await this.repository.findOne({
       where: {
-        id: createTradeDto.tradeId,
+        id: importTradeData.tradeId,
       },
     });
     console.log(importedProductData.dataValues);
     const tradedProduct = await this.productService.update(
       importedProductData.productId,
       {
-        shopkeeperId: createTradeDto.shopkeeperId,
+        shopkeeperId: importTradeData.shopkeeperId,
       },
     );
     console.log(tradedProduct);
 
     this.update(importedProductData.id, {
-      importedShopkeeperId: createTradeDto.shopkeeperId,
+      importedShopkeeperId: importTradeData.shopkeeperId,
       tradestatus: true,
     });
     this.remove(importedProductData.id);

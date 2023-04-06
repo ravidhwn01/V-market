@@ -1,4 +1,12 @@
-import { Button, Flex, Grid, GridItem, Image, Text } from "@chakra-ui/react";
+import {
+  Button,
+  Flex,
+  Grid,
+  GridItem,
+  Heading,
+  Image,
+  Text,
+} from "@chakra-ui/react";
 import _ from "lodash";
 
 import { useMutation, useQuery, useQueryClient } from "react-query";
@@ -8,6 +16,7 @@ import { Product } from "../interfaces/shop.interface";
 import AddProduct from "./AddProduct";
 import Navbar from "./Navbar";
 import { addProductsToExport } from "../api/trade.api";
+import { Link } from "react-router-dom";
 
 function ListOfProducts() {
   const queryClient = useQueryClient();
@@ -21,15 +30,17 @@ function ListOfProducts() {
   const addProductToExport = useMutation(addProductsToExport, {
     onSuccess: () => {
       queryClient.refetchQueries(`products-${shopId}`);
-      navigate(`/exportedproducts/${shopId}`);
     },
   });
 
   return (
     <>
       <Navbar />
+      <Button m="4" bg={"#aac6ca"}>
+        {" "}
+        <Link to={`/exportedproducts/${shopId}`}> Import Products </Link>{" "}
+      </Button>
       <AddProduct />
-
       <Grid
         templateColumns="repeat(auto-fit, 290px)"
         gap={6}

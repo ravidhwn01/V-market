@@ -1,25 +1,10 @@
-import {
-  Box,
-  Button,
-  Flex,
-  Heading,
-  Image,
-  Text,
-  useMediaQuery,
-} from "@chakra-ui/react";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Flex, Heading, Image, Text, useMediaQuery } from "@chakra-ui/react";
+import { Link, useNavigate } from "react-router-dom";
 
-export interface IShopId {
-  id?: number;
-}
-
-function Navbar(props: IShopId) {
-  const { id } = props;
-  const navigate = useNavigate();
+function Navbar() {
   const [showNavbarPosition] = useMediaQuery("(min-width: 700px)");
   return (
     <Flex
-      // position="fixed"
       justifyContent={"space-between"}
       w="100%"
       p="6"
@@ -52,12 +37,12 @@ function Navbar(props: IShopId) {
             Home{" "}
           </Heading>
         </Link>
-        <Link to={`/exportedproducts/${id}`}>
+        {/* <Link to={`/exportedproducts/${id}`}>
           {" "}
           <Heading fontSize={"2xl"} fontWeight={"normal"}>
             Import Products
           </Heading>
-        </Link>
+        </Link> */}
         <Link to={"/signup"}>
           <Heading fontSize={"2xl"} fontWeight={"medium"}>
             Sign Up
