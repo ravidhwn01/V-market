@@ -1,14 +1,21 @@
 import {
   Box,
+  Button,
   Flex,
   Heading,
   Image,
   Text,
   useMediaQuery,
 } from "@chakra-ui/react";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 
-function Navbar() {
+export interface IShopId {
+  id?: number;
+}
+
+function Navbar(props: IShopId) {
+  const { id } = props;
+  const navigate = useNavigate();
   const [showNavbarPosition] = useMediaQuery("(min-width: 700px)");
   return (
     <Flex
@@ -21,16 +28,20 @@ function Navbar() {
       bg={"#aac6ca"}
     >
       <Flex gap="5">
-        <Image
-          height="10px"
-          borderRadius="full"
-          boxSize="40px"
-          src="https://cdn4.vectorstock.com/i/1000x1000/70/83/shop-store-icon-vector-30737083.jpg"
-          alt="Loading..."
-        />
-        <Text fontWeight={"extrabold"} color={"green.800"}>
-          Vmarket
-        </Text>
+        <Link to={"/"}>
+          <Image
+            height="10px"
+            borderRadius="full"
+            boxSize="40px"
+            src="https://cdn4.vectorstock.com/i/1000x1000/70/83/shop-store-icon-vector-30737083.jpg"
+            alt="Loading..."
+          />
+        </Link>
+        <Link to={"/"}>
+          <Text fontWeight={"extrabold"} color={"green.800"}>
+            Vmarket
+          </Text>
+        </Link>
       </Flex>
 
       <Flex gap="6" flexWrap="wrap">
@@ -41,7 +52,7 @@ function Navbar() {
             Home{" "}
           </Heading>
         </Link>
-        <Link to={"/exportedproducts"}>
+        <Link to={`/exportedproducts/${id}`}>
           {" "}
           <Heading fontSize={"2xl"} fontWeight={"normal"}>
             Import Products

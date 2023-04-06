@@ -17,7 +17,6 @@ function AllShops() {
   // useQuery hook.
   const { data } = useQuery<IShopWithProduct[]>("shops", getShopkeeper);
   // This key is used to cache the result of the query so that if the same key is used again later, the cached result can be returned instead of making a new request.
-  console.log(data);
   const [isCardViewInCenter] = useMediaQuery("(min-width: 1200px)");
 
   return (
@@ -25,7 +24,6 @@ function AllShops() {
       <Navbar />
       <Grid
         templateColumns="repeat(auto-fit, 315px)"
-        // justifySelf="flex-end"
         gap={6}
         mx="24"
         my="8"

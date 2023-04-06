@@ -48,7 +48,7 @@ export class TradeService {
       importedShopkeeperId: createTradeDto.shopkeeperId,
       tradestatus: true,
     });
-    // this.remove(importedProductData.id);
+    this.remove(importedProductData.id);
   }
   findOne(id: number) {
     return this.repository.findOne({

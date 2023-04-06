@@ -15,15 +15,13 @@ function ExportedProducts() {
   const { shopkeeperId } = useParams();
   console.log(shopkeeperId);
   const queryClient = useQueryClient();
-  const navigate = useNavigate();
+
   const { data } = useQuery<IExportedProduct[]>(
     `exportedProduct-${shopkeeperId}`,
     async () => {
       return await getAllExportedProducts();
     }
   );
-
-  // const updateProductToImport = useMutation( importProduct,{} );
 
   return (
     <>
