@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsNumber } from 'class-validator';
+import { IsBoolean, IsNotEmpty, IsNumber } from 'class-validator';
 
 export class CreateTradeDto {
   @IsNumber()
@@ -10,5 +10,8 @@ export class CreateTradeDto {
   exportedShopkeeperId: number;
 
   @IsNumber()
-  importedShopkeeper: boolean;
+  importedShopkeeperId: number;
+
+  @IsBoolean()
+  tradestatus: boolean;
 }

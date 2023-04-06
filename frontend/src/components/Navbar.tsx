@@ -44,7 +44,7 @@ function Navbar() {
         <Link to={"/exportedproducts"}>
           {" "}
           <Heading fontSize={"2xl"} fontWeight={"normal"}>
-            Export/Products
+            Import Products
           </Heading>
         </Link>
         <Link to={"/signup"}>

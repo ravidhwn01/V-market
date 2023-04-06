@@ -21,7 +21,7 @@ function ListOfProducts() {
   const addProductToExport = useMutation(addProductsToExport, {
     onSuccess: () => {
       queryClient.refetchQueries(`products-${shopId}`);
-      navigate("/exportedproducts");
+      navigate(`/exportedproducts/${shopId}`);
     },
   });
 

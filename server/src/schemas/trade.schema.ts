@@ -29,5 +29,8 @@ export class TradeSchema extends Model<ITrade> {
   shopkeeper: Shopkeeper;
 
   @Column
-  importedShopkeeper: boolean;
+  importedShopkeeperId: number;
+
+  @Column
+  tradestatus: boolean;
 }

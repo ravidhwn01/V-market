@@ -34,8 +34,8 @@ export class ProductService {
     });
   }
 
-  findOne(id: number) {
-    return this.repository.findOne({
+  public async findOne(id: number) {
+    return await this.repository.findOne({
       where: { id },
     });
   }

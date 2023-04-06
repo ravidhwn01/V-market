@@ -17,7 +17,11 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/allshops" element={<AllShops />} />
-          <Route path="/exportedproducts" element={<ExportedProducts />} />
+
+          <Route
+            path="/exportedproducts/:shopkeeperId"
+            element={<ExportedProducts />}
+          />
           <Route path="/listofproducts/:shopId" element={<ListOfProducts />} />
           <Route path="*" element={<PageNotFound />} />
         </Routes>

@@ -12,7 +12,7 @@ function PageNotFound() {
             Page Not Found
           </Box>
         </Center>
-        <Navigate to={"/"} />
+        {/* <Navigate to={"/"} /> */}
       </Flex>
     </>
   );

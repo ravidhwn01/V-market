@@ -4,23 +4,12 @@ export interface IExportedProduct {
   id: number;
   productId: number;
   exportedShopkeeperId: number;
-  importedShopkeeper: boolean;
+  importedShopkeeperId: number;
   createdAt: Date;
   updatedAt: Date;
   product: Product;
   shopkeeper: Shopkeeper;
 }
-
-// export interface Product {
-//   id: number;
-//   shopkeeperId: number;
-//   productName: string;
-//   quantity: number;
-//   description: string;
-//   productImageUrl: string;
-//   createdAt: Date;
-//   updatedAt: Date;
-// }
 
 export interface Shopkeeper {
   id: number;

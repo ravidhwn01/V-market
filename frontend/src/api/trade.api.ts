@@ -9,8 +9,18 @@ export const addProductsToExport = async (exportProduct: any) => {
 };
 
 export const getAllExportedProducts = async () => {
-  const getExportedProduct = await axiosInstance.get("trade");
+  const getExportedProduct = await axiosInstance.get(`trade`);
   console.log(getExportedProduct.data);
 
   return getExportedProduct.data;
+};
+
+export const importProduct = async (tradeId: number, shopkeeperId: number) => {
+  const exportedProduct = await axiosInstance.post("trade/import", {
+    tradeId,
+    shopkeeperId,
+  });
+  console.log(exportedProduct.data, "imported product");
+
+  return exportedProduct.data;
 };

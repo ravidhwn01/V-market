@@ -1,3 +1,4 @@
+import { Product } from "../interfaces/shop.interface";
 import { IProduct } from "../schemas/shopkeeper.schema";
 import { axiosInstance } from "./api.instance";
 
@@ -13,8 +14,15 @@ export const getAllProduct = async (shopId: string) => {
   return products.data;
 };
 
-export const updateProduct = async (id: number) => {
-  const updatedProductResponse = await axiosInstance.patch(`product/:${id}`);
+export const updateProductsShopkeeperId = async (
+  productId: number,
+  shopkeeperId: number
+): Promise<Product> => {
+  console.log(shopkeeperId);
+  const updatedProductResponse = await axiosInstance.patch(
+    `product/${productId}`,
+    shopkeeperId
+  );
   console.log(updatedProductResponse.data);
   return updatedProductResponse.data;
 };

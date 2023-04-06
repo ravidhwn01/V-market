@@ -2,25 +2,28 @@ import { Button } from "@chakra-ui/button";
 import { Flex, Grid, GridItem, Heading, Text } from "@chakra-ui/layout";
 import * as _ from "lodash";
 import { useMutation, useQuery, useQueryClient } from "react-query";
-import { getAllExportedProducts } from "../api/trade.api";
+import { getAllExportedProducts, importProduct } from "../api/trade.api";
 
 import { Image } from "@chakra-ui/image";
 import { IExportedProduct } from "../interfaces/exportedProduct.interface";
 import Navbar from "./Navbar";
-import { updateProduct } from "../api/product.api";
-import { useNavigate } from "react-router";
+import { getAllProduct, updateProductsShopkeeperId } from "../api/product.api";
+import { useNavigate, useParams } from "react-router";
+import { number } from "prop-types";
 
 function ExportedProducts() {
+  const { shopkeeperId } = useParams();
+  console.log(shopkeeperId);
   const queryClient = useQueryClient();
   const navigate = useNavigate();
   const { data } = useQuery<IExportedProduct[]>(
-    "exportedProduct",
-    getAllExportedProducts
+    `exportedProduct-${shopkeeperId}`,
+    async () => {
+      return await getAllExportedProducts();
+    }
   );
 
-  const updateProductToImport = useMutation(updateProduct, {
-    onSuccess: () => {},
-  });
+  // const updateProductToImport = useMutation( importProduct,{} );
 
   return (
     <>
@@ -56,12 +59,20 @@ function ExportedProducts() {
                 <Text color="#7A7A7A">
                   {allExportedProduct.product.description}{" "}
                 </Text>
-                <Flex justifyContent={"space-between"}>
-                  <Button bg={"#aac6ca"} _hover={{ bg: "red", color: "white" }}>
-                    Reject
-                  </Button>
-                  <Button bg={"#aac6ca"}> Import </Button>
-                </Flex>
+
+                <Button
+                  onClick={() => {
+                    importProduct(
+                      allExportedProduct.id,
+                      parseInt(shopkeeperId!)
+                    );
+                  }}
+                  w="100%"
+                  bg={"#aac6ca"}
+                >
+                  {" "}
+                  Import{" "}
+                </Button>
               </GridItem>
             );
           })}

@@ -26,6 +26,11 @@ export class TradeController {
     return this.tradeService.getProductWithTrade();
   }
 
+  @Post('import')
+  addExportedProduct(@Body() importedProduct: CreateTradeDto) {
+    return this.tradeService.importedTrade(importedProduct);
+  }
+
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.tradeService.findOne(+id);
