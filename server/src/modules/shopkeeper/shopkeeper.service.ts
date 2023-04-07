@@ -4,6 +4,8 @@ import { UpdateShopkeeperDto } from './dto/update-shopkeeper.dto';
 import { Repository, Sequelize } from 'sequelize-typescript';
 import { ShopkeeperSchema } from 'src/schemas/shopkeeper.schema';
 import { ProductSchema } from 'src/schemas/product.schema';
+import { IShopkeeper } from 'src/interfaces/shopkeeper.interface';
+import { encryptPassword } from 'src/utils/bcrypt';
 
 @Injectable()
 export class ShopkeeperService {
@@ -14,8 +16,14 @@ export class ShopkeeperService {
     this.repository = this.sequelize.getRepository(ShopkeeperSchema);
   }
   // In the constructor function, a private member named sequelize is accepted as a parameter. sequelize is an instance of the Sequelize class, which provides the ability to connect to the database.
-  create(createShopkeeperDto: CreateShopkeeperDto) {
-    return this.repository.create(createShopkeeperDto);
+  async create(createShopkeeperDto: CreateShopkeeperDto) {
+    const password = await encryptPassword(createShopkeeperDto.password);
+    console.log(password);
+
+    return this.repository.create({
+      ...createShopkeeperDto,
+      password,
+    });
   }
 
   findAll() {

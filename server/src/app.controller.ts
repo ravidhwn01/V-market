@@ -16,11 +16,6 @@ export class AppController {
   async login(@Request() req) {
     return this.authService.loginWithCredentials(req.user);
   }
-  @UseGuards(JwtAuthGuard)
-  @Get('userInfo')
-  getUserInfo(@Request() req) {
-    return req.user;
-  }
   @Get('app')
   get() {
     return this.appService.getHello();

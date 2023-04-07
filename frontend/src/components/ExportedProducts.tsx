@@ -5,10 +5,18 @@ import { useQuery, useQueryClient } from "react-query";
 import { getAllExportedProducts, importProduct } from "../api/trade.api";
 
 import { Image } from "@chakra-ui/image";
+import {
+  AlertDialog,
+  AlertDialogBody,
+  AlertDialogContent,
+  AlertDialogFooter,
+  AlertDialogOverlay,
+  useMediaQuery,
+} from "@chakra-ui/react";
+import React from "react";
 import { useParams } from "react-router";
 import { IExportedProduct } from "../interfaces/exportedProduct.interface";
 import Navbar from "./Navbar";
-import { useMediaQuery } from "@chakra-ui/react";
 
 function ExportedProducts() {
   const { shopkeeperId } = useParams();
@@ -21,6 +29,9 @@ function ExportedProducts() {
     getAllExportedProducts
   );
 
+  const [isOpen, setIsOpen] = React.useState(false);
+  const onClose = () => setIsOpen(false);
+  const cancelRef = React.useRef(null);
   return (
     <>
       <Navbar />
@@ -33,7 +44,7 @@ function ExportedProducts() {
           gap={6}
           mx="24"
           my="8"
-          justifyContent={isCardViewInCenter ? "flex-start" : "center"}
+          justifyContent={["flex-start", "center"]}
         >
           {_.map(data, (allExportedProduct) => {
             return (
@@ -63,6 +74,7 @@ function ExportedProducts() {
                       allExportedProduct.id,
                       parseInt(shopkeeperId!)
                     );
+                    setIsOpen(true);
                   }}
                   w="100%"
                   bg={"#aac6ca"}
@@ -70,6 +82,25 @@ function ExportedProducts() {
                   {" "}
                   Import{" "}
                 </Button>
+                <AlertDialog
+                  isOpen={isOpen}
+                  leastDestructiveRef={cancelRef}
+                  onClose={onClose}
+                >
+                  <AlertDialogOverlay>
+                    <AlertDialogContent>
+                      <AlertDialogBody fontSize="lg" fontWeight="bold">
+                        Product Imported Successfully.
+                      </AlertDialogBody>
+
+                      <AlertDialogFooter>
+                        <Button ref={cancelRef} onClick={onClose}>
+                          Cancel
+                        </Button>
+                      </AlertDialogFooter>
+                    </AlertDialogContent>
+                  </AlertDialogOverlay>
+                </AlertDialog>
               </GridItem>
             );
           })}

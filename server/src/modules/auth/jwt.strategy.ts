@@ -1,6 +1,7 @@
 import { PassportStrategy } from '@nestjs/passport';
 import { ExtractJwt, Strategy } from 'passport-jwt';
 import { jwtConstants } from '../../constants/constance';
+import { ILoginShopkeeper } from 'src/interfaces/login-shopkeeper.interface';
 
 export class JwtStrategy extends PassportStrategy(Strategy) {
   constructor() {
@@ -11,7 +12,8 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
     });
   }
 
-  async validate(payload: any) {
-    return { userId: payload.sub, email: payload.email };
+  async validate(payload: ILoginShopkeeper) {
+    console.log(payload);
+    return payload;
   }
 }

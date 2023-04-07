@@ -15,12 +15,12 @@ import { Link } from "react-router-dom";
 import { getAllProduct } from "../api/product.api";
 import { addProductsToExport } from "../api/trade.api";
 import { Product } from "../interfaces/shop.interface";
-import AddProduct from "./add-product";
+import AddProduct from "./AddProduct";
 import Navbar from "./Navbar";
 
 function ListOfProducts() {
   const queryClient = useQueryClient();
-
+  const navigate = useNavigate();
   const { shopId } = useParams();
   const [isCardViewInCenter] = useMediaQuery("(min-width: 1200px)");
 
@@ -32,6 +32,7 @@ function ListOfProducts() {
   const addProductToExport = useMutation(addProductsToExport, {
     onSuccess: () => {
       queryClient.refetchQueries(`products-${shopId}`);
+      navigate(`/listofproducts/${shopId}`);
     },
   });
 

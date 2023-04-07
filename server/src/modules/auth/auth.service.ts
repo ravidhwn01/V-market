@@ -3,6 +3,8 @@ import { JwtService } from '@nestjs/jwt';
 import { PassportStrategy } from '@nestjs/passport';
 import { Strategy } from 'passport-local';
 import { ShopkeeperService } from '../shopkeeper/shopkeeper.service';
+import { IShopkeeper } from 'src/interfaces/shopkeeper.interface';
+import { CreateShopkeeperDto } from '../shopkeeper/dto/create-shopkeeper.dto';
 
 @Injectable()
 export class AuthService extends PassportStrategy(Strategy) {
@@ -24,8 +26,8 @@ export class AuthService extends PassportStrategy(Strategy) {
     return null;
   }
 
-  async loginWithCredentials(user: any) {
-    const payload = { username: user.username, sub: user.userId };
+  async loginWithCredentials(user: IShopkeeper) {
+    const payload = { email: user.email, id: user.id };
     console.log(payload);
 
     return {
