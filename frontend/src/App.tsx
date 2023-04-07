@@ -13,6 +13,7 @@ function App() {
       {/* creating route */}
       <BrowserRouter>
         <Routes>
+          <Route path="*" element={<PageNotFound />} />
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
@@ -23,7 +24,6 @@ function App() {
             element={<ExportedProducts />}
           />
           <Route path="/listofproducts/:shopId" element={<ListOfProducts />} />
-          <Route path="*" element={<PageNotFound />} />
         </Routes>
       </BrowserRouter>
     </>

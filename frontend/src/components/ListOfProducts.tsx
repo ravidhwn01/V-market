@@ -15,12 +15,12 @@ import { Link } from "react-router-dom";
 import { getAllProduct } from "../api/product.api";
 import { addProductsToExport } from "../api/trade.api";
 import { Product } from "../interfaces/shop.interface";
-import AddProduct from "./AddProduct";
+import AddProduct from "./add-product";
 import Navbar from "./Navbar";
 
 function ListOfProducts() {
   const queryClient = useQueryClient();
-  const navigate = useNavigate();
+
   const { shopId } = useParams();
   const [isCardViewInCenter] = useMediaQuery("(min-width: 1200px)");
 
@@ -40,14 +40,13 @@ function ListOfProducts() {
       <Navbar />
       <Flex justifyContent={"flex-end"} gap={1}>
         <Button m="4">
-          {" "}
-          <Link to={`/exportedproducts/${shopId}`}> Import Products </Link>{" "}
+          <Link to={`/exportedproducts/${shopId}`}> Import Products </Link>
         </Button>
         <Button m="4" bg={"#aac6ca"}>
-          {" "}
-          {<AddProduct />}{" "}
+          <AddProduct />
         </Button>
       </Flex>
+
       <Grid
         templateColumns="repeat(auto-fit, 315px)"
         gap={6}
@@ -86,8 +85,7 @@ function ListOfProducts() {
                   }
                   bg={"#aac6ca"}
                 >
-                  {" "}
-                  Export{" "}
+                  Export
                 </Button>
               </Flex>
             </GridItem>
