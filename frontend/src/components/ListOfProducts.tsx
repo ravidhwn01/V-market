@@ -3,7 +3,6 @@ import {
   Flex,
   Grid,
   GridItem,
-  Heading,
   Image,
   Text,
   useMediaQuery,
@@ -12,12 +11,12 @@ import _ from "lodash";
 
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import { useNavigate, useParams } from "react-router";
+import { Link } from "react-router-dom";
 import { getAllProduct } from "../api/product.api";
+import { addProductsToExport } from "../api/trade.api";
 import { Product } from "../interfaces/shop.interface";
 import AddProduct from "./AddProduct";
 import Navbar from "./Navbar";
-import { addProductsToExport } from "../api/trade.api";
-import { Link } from "react-router-dom";
 
 function ListOfProducts() {
   const queryClient = useQueryClient();
@@ -49,7 +48,6 @@ function ListOfProducts() {
           {<AddProduct />}{" "}
         </Button>
       </Flex>
-
       <Grid
         templateColumns="repeat(auto-fit, 315px)"
         gap={6}
