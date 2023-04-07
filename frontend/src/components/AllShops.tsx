@@ -15,7 +15,7 @@ import Navbar from "./Navbar";
 
 function AllShops() {
   // useQuery hook.
-  const { data } = useQuery<IShopWithProduct[]>("shops", getShopkeeper);
+  const { data: shops } = useQuery<IShopWithProduct[]>("shops", getShopkeeper);
   // This key is used to cache the result of the query so that if the same key is used again later, the cached result can be returned instead of making a new request.
   const [isCardViewInCenter] = useMediaQuery("(min-width: 1200px)");
 
@@ -29,7 +29,7 @@ function AllShops() {
         my="8"
         justifyContent={isCardViewInCenter ? "flex-start" : "center"}
       >
-        {_.map(data, (shop) => {
+        {_.map(shops, (shop) => {
           return (
             <GridItem
               p="6"

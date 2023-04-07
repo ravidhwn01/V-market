@@ -18,9 +18,7 @@ function ExportedProducts() {
 
   const { data } = useQuery<IExportedProduct[]>(
     `exportedProduct-${shopkeeperId}`,
-    async () => {
-      return await getAllExportedProducts();
-    }
+    getAllExportedProducts
   );
 
   return (
