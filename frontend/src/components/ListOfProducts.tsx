@@ -6,6 +6,7 @@ import {
   Heading,
   Image,
   Text,
+  useMediaQuery,
 } from "@chakra-ui/react";
 import _ from "lodash";
 
@@ -22,6 +23,8 @@ function ListOfProducts() {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
   const { shopId } = useParams();
+  const [isCardViewInCenter] = useMediaQuery("(min-width: 1200px)");
+
   const { data } = useQuery<Product[]>(`products-${shopId}`, () => {
     return getAllProduct(shopId!);
     // we are certain that shopId will not be null or undefined at this point.
@@ -36,16 +39,23 @@ function ListOfProducts() {
   return (
     <>
       <Navbar />
-      <Button m="4" bg={"#aac6ca"}>
-        {" "}
-        <Link to={`/exportedproducts/${shopId}`}> Import Products </Link>{" "}
-      </Button>
-      <AddProduct />
+      <Flex justifyContent={"flex-end"} gap={1}>
+        <Button m="4">
+          {" "}
+          <Link to={`/exportedproducts/${shopId}`}> Import Products </Link>{" "}
+        </Button>
+        <Button m="4" bg={"#aac6ca"}>
+          {" "}
+          {<AddProduct />}{" "}
+        </Button>
+      </Flex>
+
       <Grid
-        templateColumns="repeat(auto-fit, 290px)"
+        templateColumns="repeat(auto-fit, 315px)"
         gap={6}
-        m="8"
-        justifyContent={"center"}
+        mx="24"
+        my="8"
+        justifyContent={isCardViewInCenter ? "flex-start" : "center"}
       >
         {_.map(data, (product) => {
           const { id } = product;

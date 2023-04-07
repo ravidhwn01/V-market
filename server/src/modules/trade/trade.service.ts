@@ -1,13 +1,12 @@
 import { Injectable } from '@nestjs/common';
-import { CreateTradeDto } from './dto/create-trade.dto';
-import { UpdateTradeDto } from './dto/update-trade.dto';
 import { Repository, Sequelize } from 'sequelize-typescript';
-import { TradeSchema } from 'src/schemas/trade.schema';
+import { IImportTradeData } from 'src/interfaces/importTrade.interface';
 import { ProductSchema } from 'src/schemas/product.schema';
 import { ShopkeeperSchema } from 'src/schemas/shopkeeper.schema';
+import { TradeSchema } from 'src/schemas/trade.schema';
 import { ProductService } from '../product/product.service';
-import { UpdateProductDto } from '../product/dto/update-product.dto';
-import { IImportTradeData } from 'src/interfaces/importTrade.interface';
+import { CreateTradeDto } from './dto/create-trade.dto';
+import { UpdateTradeDto } from './dto/update-trade.dto';
 @Injectable()
 export class TradeService {
   private repository: Repository<TradeSchema>;

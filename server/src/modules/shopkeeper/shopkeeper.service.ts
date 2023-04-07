@@ -35,6 +35,13 @@ export class ShopkeeperService {
       },
     });
   }
+  findOneWithUserName(email: string) {
+    return this.repository.findOne({
+      where: {
+        email: email,
+      },
+    });
+  }
 
   update(id: number, updateShopkeeperDto: UpdateShopkeeperDto) {
     return this.repository.update(updateShopkeeperDto, {

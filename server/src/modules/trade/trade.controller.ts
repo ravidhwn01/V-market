@@ -10,6 +10,7 @@ import {
 import { TradeService } from './trade.service';
 import { CreateTradeDto } from './dto/create-trade.dto';
 import { UpdateTradeDto } from './dto/update-trade.dto';
+import { IImportTradeData } from 'src/interfaces/importTrade.interface';
 
 @Controller('trade')
 export class TradeController {
@@ -27,7 +28,7 @@ export class TradeController {
   }
 
   @Post('import')
-  addExportedProduct(@Body() importedProduct: CreateTradeDto) {
+  addExportedProduct(@Body() importedProduct: IImportTradeData) {
     return this.tradeService.importedTrade(importedProduct);
   }
 

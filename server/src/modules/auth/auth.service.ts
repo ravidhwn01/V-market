@@ -1,34 +1,35 @@
-import { Injectable, UnauthorizedException } from '@nestjs/common';
-import { CreateAuthDto } from './dto/create-auth.dto';
-import { UpdateAuthDto } from './dto/update-auth.dto';
+import { Injectable } from '@nestjs/common';
+import { JwtService } from '@nestjs/jwt';
+import { PassportStrategy } from '@nestjs/passport';
+import { Strategy } from 'passport-local';
 import { ShopkeeperService } from '../shopkeeper/shopkeeper.service';
 
 @Injectable()
-export class AuthService {
-  // constructor(private shopKeeperService: ShopkeeperService) {}
-
-  // async singIn(email: string, pass: string) {
-  //   const user = await this.shopKeeperService.findOne(email as any);
-  //   if (user.password !== pass) {
-  //     throw new UnauthorizedException();
-  //   }
-  //   const { password, ...result } = user;
-  //   return result;
-  // }
-
-  findAll() {
-    return `This action returns all auth`;
+export class AuthService extends PassportStrategy(Strategy) {
+  constructor(
+    private shopkeeperService: ShopkeeperService,
+    private jwtTokenService: JwtService,
+  ) {
+    super();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} auth`;
+  async validateUserCredentials(email: string, password: string): Promise<any> {
+    const user = await this.shopkeeperService.findOneWithUserName(email);
+    console.log(user);
+    if (user && user.password === password) {
+      const { password, ...result } = user;
+      console.log(result);
+      return result;
+    }
+    return null;
   }
 
-  update(id: number, updateAuthDto: UpdateAuthDto) {
-    return `This action updates a #${id} auth`;
-  }
+  async loginWithCredentials(user: any) {
+    const payload = { username: user.username, sub: user.userId };
+    console.log(payload);
 
-  remove(id: number) {
-    return `This action removes a #${id} auth`;
+    return {
+      access_token: this.jwtTokenService.sign(payload),
+    };
   }
 }

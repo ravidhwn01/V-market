@@ -1,5 +1,5 @@
 import { Flex, Heading, Image, Text, useMediaQuery } from "@chakra-ui/react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function Navbar() {
   const [showNavbarPosition] = useMediaQuery("(min-width: 700px)");
@@ -32,7 +32,11 @@ function Navbar() {
       <Flex gap="6" flexWrap="wrap">
         <Link to={"/"}>
           {" "}
-          <Heading fontSize={"2xl"} fontWeight={"normal"}>
+          <Heading
+            _hover={{ textDecoration: "underline" }}
+            fontSize={"2xl"}
+            fontWeight={"medium"}
+          >
             {" "}
             Home{" "}
           </Heading>
@@ -44,12 +48,20 @@ function Navbar() {
           </Heading>
         </Link> */}
         <Link to={"/signup"}>
-          <Heading fontSize={"2xl"} fontWeight={"medium"}>
+          <Heading
+            _hover={{ textDecoration: "underline" }}
+            fontSize={"2xl"}
+            fontWeight={"medium"}
+          >
             Sign Up
           </Heading>
         </Link>
         <Link to={"/login"}>
-          <Heading fontSize={"2xl"} fontWeight={"medium"}>
+          <Heading
+            _hover={{ textDecoration: "underline" }}
+            fontSize={"2xl"}
+            fontWeight={"medium"}
+          >
             Login
           </Heading>
         </Link>

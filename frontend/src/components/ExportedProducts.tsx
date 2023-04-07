@@ -1,20 +1,20 @@
 import { Button } from "@chakra-ui/button";
 import { Flex, Grid, GridItem, Heading, Text } from "@chakra-ui/layout";
 import * as _ from "lodash";
-import { useMutation, useQuery, useQueryClient } from "react-query";
+import { useQuery, useQueryClient } from "react-query";
 import { getAllExportedProducts, importProduct } from "../api/trade.api";
 
 import { Image } from "@chakra-ui/image";
+import { useParams } from "react-router";
 import { IExportedProduct } from "../interfaces/exportedProduct.interface";
 import Navbar from "./Navbar";
-import { getAllProduct, updateProductsShopkeeperId } from "../api/product.api";
-import { useNavigate, useParams } from "react-router";
-import { number } from "prop-types";
+import { useMediaQuery } from "@chakra-ui/react";
 
 function ExportedProducts() {
   const { shopkeeperId } = useParams();
   console.log(shopkeeperId);
   const queryClient = useQueryClient();
+  const [isCardViewInCenter] = useMediaQuery("(min-width: 1200px)");
 
   const { data } = useQuery<IExportedProduct[]>(
     `exportedProduct-${shopkeeperId}`,
@@ -33,8 +33,9 @@ function ExportedProducts() {
         <Grid
           templateColumns="repeat(auto-fit, 315px)"
           gap={6}
-          m="8"
-          justifyContent={"center"}
+          mx="24"
+          my="8"
+          justifyContent={isCardViewInCenter ? "flex-start" : "center"}
         >
           {_.map(data, (allExportedProduct) => {
             return (
