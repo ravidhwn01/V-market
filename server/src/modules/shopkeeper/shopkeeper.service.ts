@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { CreateShopkeeperDto } from './dto/create-shopkeeper.dto';
 import { UpdateShopkeeperDto } from './dto/update-shopkeeper.dto';
 import { Repository, Sequelize } from 'sequelize-typescript';
@@ -43,12 +43,17 @@ export class ShopkeeperService {
       },
     });
   }
-  findOneWithUserName(email: string) {
-    return this.repository.findOne({
-      where: {
-        email: email,
-      },
+  async findOneWithUserEmail(email: string) {
+    const shopkeeper = this.repository.findOne({
+      where: { email },
     });
+    if (shopkeeper) {
+      return (await shopkeeper).dataValues;
+    }
+    throw new HttpException(
+      'User with this email does not exist',
+      HttpStatus.NOT_FOUND,
+    );
   }
 
   update(id: number, updateShopkeeperDto: UpdateShopkeeperDto) {

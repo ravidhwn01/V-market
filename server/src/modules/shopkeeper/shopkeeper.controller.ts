@@ -26,6 +26,11 @@ export class ShopkeeperController {
     return this.shopkeeperService.getAllWithProducts();
   }
 
+  @Get(':email')
+  findOneWithEmail(@Param('email') email: string) {
+    return this.shopkeeperService.findOneWithUserEmail(email);
+  }
+
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.shopkeeperService.findOne(+id);
