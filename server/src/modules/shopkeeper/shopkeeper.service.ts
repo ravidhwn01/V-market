@@ -6,6 +6,7 @@ import { ShopkeeperSchema } from 'src/schemas/shopkeeper.schema';
 import { ProductSchema } from 'src/schemas/product.schema';
 import { IShopkeeper } from 'src/interfaces/shopkeeper.interface';
 import { encryptPassword } from 'src/utils/bcrypt';
+import { Shopkeeper } from './entities/shopkeeper.entity';
 
 @Injectable()
 export class ShopkeeperService {
@@ -44,16 +45,10 @@ export class ShopkeeperService {
     });
   }
   async findOneWithUserEmail(email: string) {
-    const shopkeeper = this.repository.findOne({
+    console.log('find with email');
+    return this.repository.findOne({
       where: { email },
     });
-    if (shopkeeper) {
-      return (await shopkeeper).dataValues;
-    }
-    throw new HttpException(
-      'User with this email does not exist',
-      HttpStatus.NOT_FOUND,
-    );
   }
 
   update(id: number, updateShopkeeperDto: UpdateShopkeeperDto) {

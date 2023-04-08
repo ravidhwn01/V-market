@@ -6,6 +6,6 @@ import { ShopkeeperService } from './shopkeeper.service';
   imports: [],
   controllers: [ShopkeeperController],
   providers: [ShopkeeperService],
-  exports: [ShopkeeperService],
+  exports: [ShopkeeperService, ShopkeeperModule],
 })
 export class ShopkeeperModule {}
