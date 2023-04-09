@@ -11,7 +11,7 @@ import { FieldValues, useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import Navbar from "./Navbar";
 import { useMutation } from "react-query";
-import { loginShopkeeperRequest } from "../api/login-api-instance";
+import { loginShopkeeperRequest } from "../api/login-api";
 import { ILoginUser } from "../interfaces/loginDetails.interface";
 
 function Login() {

@@ -6,20 +6,21 @@ import { JwtModule } from '@nestjs/jwt';
 import { ShopkeeperModule } from '../shopkeeper/shopkeeper.module';
 import { LocalStrategy } from './local.strategy';
 import { JwtStrategy } from './jwt.strategy';
+import { jwtConstants } from 'src/constants/constance';
 
 @Module({
   imports: [
     PassportModule,
     ShopkeeperModule,
     JwtModule.register({
-      secret: 'thisIsSecretKey',
+      secret: jwtConstants.secret,
       signOptions: {
-        expiresIn: '60s',
+        expiresIn: '10h',
       },
     }),
   ],
   controllers: [AuthController],
-  providers: [AuthService, AuthModule, JwtStrategy, LocalStrategy],
+  providers: [AuthService, AuthModule, JwtStrategy],
   exports: [AuthService],
 })
 export class AuthModule {}

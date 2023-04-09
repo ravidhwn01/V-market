@@ -12,7 +12,7 @@ import { Shopkeeper } from './entities/shopkeeper.entity';
 export class ShopkeeperService {
   //  the repository object can be used to access and modify data for the ShopkeeperSchema model.
   // The repository object will be of type Repository with a generic type of ShopkeeperSchema, which is used to store data for the ShopkeeperSchema model.
-  private repository: Repository<ShopkeeperSchema>;
+  public repository: Repository<ShopkeeperSchema>;
   constructor(private sequelize: Sequelize) {
     this.repository = this.sequelize.getRepository(ShopkeeperSchema);
   }

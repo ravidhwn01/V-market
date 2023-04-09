@@ -16,7 +16,7 @@ import { PassportModule } from '@nestjs/passport';
     ProductModule,
     TradeModule,
     AuthModule,
-    PassportModule.register({ defaultStrategy: 'local' }),
+    PassportModule.register({ defaultStrategy: 'jwt' }),
   ],
   controllers: [AppController],
   providers: [AppService, ShopkeeperService],

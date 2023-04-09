@@ -6,10 +6,12 @@ import {
   Patch,
   Param,
   Delete,
+  UseGuards,
 } from '@nestjs/common';
 import { ProductService } from './product.service';
 import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
+import { AuthGuard } from '@nestjs/passport';
 
 @Controller('product')
 export class ProductController {
@@ -24,7 +26,7 @@ export class ProductController {
   findAll() {
     return this.productService.getAllWithShopKeeper();
   }
-
+  @UseGuards(AuthGuard('jwt'))
   @Get('/shopkeeper/:shopkeeperId')
   getAllForShopKeeper(@Param('shopkeeperId') shopkeeperId: string) {
     return this.productService.getAllForShopKeeper(+shopkeeperId);

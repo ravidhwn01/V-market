@@ -6,11 +6,14 @@ import {
   Patch,
   Param,
   Delete,
+  UseGuards,
+  Request,
 } from '@nestjs/common';
 import { TradeService } from './trade.service';
 import { CreateTradeDto } from './dto/create-trade.dto';
 import { UpdateTradeDto } from './dto/update-trade.dto';
 import { IImportTradeData } from 'src/interfaces/importTrade.interface';
+import { AuthGuard } from '@nestjs/passport';
 
 @Controller('trade')
 export class TradeController {
@@ -22,8 +25,10 @@ export class TradeController {
     return this.tradeService.create(createTradeDto);
   }
 
+  @UseGuards(AuthGuard('jwt'))
   @Get()
-  findAll() {
+  findAll(@Request() req) {
+    console.log(req.user);
     return this.tradeService.getProductWithTrade();
   }
 

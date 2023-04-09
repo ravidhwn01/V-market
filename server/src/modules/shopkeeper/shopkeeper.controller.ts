@@ -6,10 +6,12 @@ import {
   Param,
   Patch,
   Post,
+  UseGuards,
 } from '@nestjs/common';
 import { CreateShopkeeperDto } from './dto/create-shopkeeper.dto';
 import { UpdateShopkeeperDto } from './dto/update-shopkeeper.dto';
 import { ShopkeeperService } from './shopkeeper.service';
+import { AuthGuard } from '@nestjs/passport';
 
 @Controller('shopkeeper')
 export class ShopkeeperController {
@@ -21,6 +23,7 @@ export class ShopkeeperController {
     return this.shopkeeperService.create(createShopkeeperDto);
   }
 
+  @UseGuards(AuthGuard('jwt'))
   @Get()
   findAll() {
     return this.shopkeeperService.getAllWithProducts();

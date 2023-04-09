@@ -7,5 +7,9 @@ export const loginShopkeeperRequest = async (loginDetails: ILoginUser) => {
     loginDetails
   );
   console.log(loggedInShopkeeperResponse.data);
+  localStorage.setItem(
+    "access_token",
+    loggedInShopkeeperResponse.data.access_token
+  );
   return loggedInShopkeeperResponse.data;
 };
