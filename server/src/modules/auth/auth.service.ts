@@ -6,8 +6,8 @@ import { Shopkeeper } from '../shopkeeper/entities/shopkeeper.entity';
 export class AuthService {
   constructor(private jwtService: JwtService) {}
 
-  generateToken(payload: Shopkeeper): string {
-    console.log('payload undefined ');
+  generateToken(payload: any): any {
+    console.log('payload  ', payload.dataValues);
     return this.jwtService.sign(payload);
   }
 }

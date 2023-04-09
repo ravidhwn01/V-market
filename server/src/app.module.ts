@@ -7,9 +7,17 @@ import { ShopkeeperModule } from './modules/shopkeeper/shopkeeper.module';
 import { ShopkeeperService } from './modules/shopkeeper/shopkeeper.service';
 import { TradeModule } from './modules/trade/trade.module';
 import { AuthModule } from './modules/auth/auth.module';
+import { PassportModule } from '@nestjs/passport';
 
 @Module({
-  imports: [ShopkeeperModule, DatabaseModule, ProductModule, TradeModule, AuthModule],
+  imports: [
+    ShopkeeperModule,
+    DatabaseModule,
+    ProductModule,
+    TradeModule,
+    AuthModule,
+    PassportModule.register({ defaultStrategy: 'local' }),
+  ],
   controllers: [AppController],
   providers: [AppService, ShopkeeperService],
 })

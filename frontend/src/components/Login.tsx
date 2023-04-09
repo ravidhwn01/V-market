@@ -10,16 +10,24 @@ import {
 import { FieldValues, useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import Navbar from "./Navbar";
+import { useMutation } from "react-query";
+import { loginShopkeeperRequest } from "../api/login-api-instance";
+import { ILoginUser } from "../interfaces/loginDetails.interface";
 
 function Login() {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
-  const onHandleSubmit = (loginUserDetail: FieldValues) => {
+  } = useForm<ILoginUser>();
+  const onHandleSubmit = (loginUserDetail: ILoginUser) => {
     console.log(loginUserDetail);
+    loginShopkeeperMutation.mutate(loginUserDetail);
   };
+
+  const loginShopkeeperMutation = useMutation(loginShopkeeperRequest, {
+    onSuccess: () => {},
+  });
 
   return (
     <>

@@ -9,7 +9,7 @@ export class AppController {
   @UseGuards(AuthGuard('local'))
   @Post('/login')
   login(@Request() req) {
-    console.log('login controller');
+    console.log('login controller', req.user.dataValues);
     // authentication complete
     // next authorize
     // id card jwt token
