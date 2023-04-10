@@ -22,7 +22,8 @@ import { addProductsToExport } from "../api/trade.api";
 import { Product } from "../interfaces/shop.interface";
 import AddProduct from "./AddProduct";
 import Navbar from "./Navbar";
-import React from "react";
+import React, { useContext } from "react";
+import { UserContext } from "../context/user.context";
 
 function ListOfProducts() {
   const queryClient = useQueryClient();
@@ -30,19 +31,28 @@ function ListOfProducts() {
   const { shopId } = useParams();
   const [isCardViewInCenter] = useMediaQuery("(min-width: 1200px)");
 
-  const { data } = useQuery<Product[]>(`products-${shopId}`, () => {
-    return getAllProductsForShop(+shopId!);
+  const { data: products } = useQuery<Product[]>(
+    `products`,
+    getAllProductsForShop
     // we are certain that shopId will not be null or undefined at this point.
-  });
-
-  console.log({ shopId });
-
+  );
+  const { user, setUser } = useContext(UserContext);
   const addProductToExport = useMutation(addProductsToExport, {
     onSuccess: () => {
-      queryClient.refetchQueries(`products-${shopId}`);
+      queryClient.refetchQueries(`products`);
       navigate(`/products`);
     },
   });
+
+  const onExportHandler = () => {
+    addProductToExport.mutate({
+      productId: user?.id,
+      exportedShopkeeperId: shopId,
+      importedShopkeeper: false,
+    });
+    setIsOpen(true);
+  };
+
   const [isOpen, setIsOpen] = React.useState(false);
   const onClose = () => setIsOpen(false);
   const cancelRef = React.useRef(null);
@@ -66,8 +76,7 @@ function ListOfProducts() {
         my="8"
         justifyContent={isCardViewInCenter ? "flex-start" : "center"}
       >
-        {_.map(data, (product) => {
-          const { id } = product;
+        {_.map(products, (product) => {
           return (
             <GridItem
               p="6"
@@ -87,16 +96,7 @@ function ListOfProducts() {
                 <Button bg="none">
                   <span>Quantity: </span> {product.quantity}
                 </Button>
-                <Button
-                  onClick={() =>
-                    addProductToExport.mutate({
-                      productId: id,
-                      exportedShopkeeperId: shopId,
-                      importedShopkeeper: false,
-                    })
-                  }
-                  bg={"#aac6ca"}
-                >
+                <Button onClick={onExportHandler} bg={"#aac6ca"}>
                   Export
                 </Button>
                 <AlertDialog

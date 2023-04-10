@@ -1,4 +1,9 @@
 import {
+  AlertDialog,
+  AlertDialogBody,
+  AlertDialogContent,
+  AlertDialogFooter,
+  AlertDialogOverlay,
   Button,
   Flex,
   FormControl,
@@ -13,15 +18,20 @@ import Navbar from "./Navbar";
 import { useMutation } from "react-query";
 import { loginShopkeeperRequest } from "../api/login-api";
 import { ILoginUser } from "../interfaces/loginDetails.interface";
-import { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { UserContext } from "../context/user.context";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { LoginSchema } from "../schemas/login-schema";
+import { cloneWith } from "lodash";
 
 function Login() {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<ILoginUser>();
+  } = useForm<ILoginUser>({
+    resolver: yupResolver(LoginSchema),
+  });
 
   const { setUser } = useContext(UserContext);
   const navigate = useNavigate();
@@ -34,9 +44,17 @@ function Login() {
     onSuccess: (data) => {
       console.log(data.user);
       setUser(data.user);
+      setIsOpen(true);
       navigate("/products");
     },
+    onError: (err) => {
+      setIsError(true);
+    },
   });
+  const [isOpen, setIsOpen] = React.useState(false);
+  const [isError, setIsError] = useState(false);
+  const onClose = () => setIsOpen(false);
+  const cancelRef = React.useRef(null);
 
   return (
     <>
@@ -83,15 +101,40 @@ function Login() {
           <Button w="100%" mt={4} bg="#aac6ca" type="submit">
             Login
           </Button>
+          <AlertDialog
+            isOpen={isOpen}
+            leastDestructiveRef={cancelRef}
+            onClose={onClose}
+          >
+            <AlertDialogOverlay>
+              <AlertDialogContent>
+                <AlertDialogBody fontSize="lg" fontWeight="bold">
+                  Login Successfully.
+                </AlertDialogBody>
+
+                <AlertDialogFooter>
+                  <Button ref={cancelRef} onClick={onClose}>
+                    Cancel
+                  </Button>
+                </AlertDialogFooter>
+              </AlertDialogContent>
+            </AlertDialogOverlay>
+          </AlertDialog>
         </Flex>
       </form>
-      <Heading textAlign={"center"} mt={"2"} size={"sm"}>
-        {" "}
-        Create new account!{" "}
-        <Link to={"/signup"} color="teal.500">
-          Sign Up{" "}
-        </Link>
-      </Heading>
+      <Link to={"/signup"} color="teal.500">
+        <Heading textAlign={"center"} mt={"2"} size={"sm"}>
+          {" "}
+          Create new account! Sign Up{" "}
+        </Heading>
+      </Link>
+      {isError ? (
+        <Heading textAlign="center" size="md" style={{ color: "red" }}>
+          User does not exist for the following login credentials
+        </Heading>
+      ) : (
+        ""
+      )}
     </>
   );
 }

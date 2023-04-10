@@ -46,35 +46,35 @@ function Navbar() {
             Home{" "}
           </Heading>
         </Link>
-        <Link to={"/signup"}>
+        <Link to={!!user && user.shopName ? "/products" : "/signup"}>
           <Heading
             _hover={{ textDecoration: "underline" }}
             fontSize={"2xl"}
             fontWeight={"medium"}
           >
-            {!!user && user.shopName ? user.shopName : "Sign Up"}
+            {!!user && user.shopName ? "" : "Sign Up"}
           </Heading>
         </Link>
         <Link to={!!user && user.firstName ? "/products" : "/login"}>
           <Heading fontSize={"2xl"} fontWeight={"medium"}>
-            {!!user && user.firstName ? user.firstName : "Login"}
+            {!!user && user.firstName ? "Products" : "Login"}
           </Heading>
         </Link>
         {!!user && (
-          <Link to={!!user && user.firstName ? "/products" : "/login"}>
-            <Heading
-              _hover={{ textDecoration: "underline" }}
-              fontSize={"2xl"}
-              fontWeight={"medium"}
-              onClick={() => {
-                localStorage.removeItem("access_token");
-                setUser(undefined);
-                navigate("/login");
-              }}
-            >
-              Logout
-            </Heading>
-          </Link>
+          // <Link to={!!user && user.firstName ? "My Shop" : "/login"}>
+          <Heading
+            _hover={{ textDecoration: "underline" }}
+            fontSize={"2xl"}
+            fontWeight={"medium"}
+            onClick={() => {
+              localStorage.removeItem("access_token");
+              setUser(undefined);
+              navigate("/");
+            }}
+          >
+            Logout
+          </Heading>
+          // </Link>
         )}
       </Flex>
     </Flex>

@@ -13,12 +13,15 @@ import { Link } from "react-router-dom";
 import { getShopkeeper } from "../api/shopkeeper.api";
 import { IShopWithProduct } from "../interfaces/shop.interface";
 import Navbar from "./Navbar";
+import { useContext } from "react";
+import { UserContext } from "../context/user.context";
 
 function AllShops() {
   // useQuery hook.
   const { data: shops } = useQuery<IShopWithProduct[]>("shops", getShopkeeper);
   // This key is used to cache the result of the query so that if the same key is used again later, the cached result can be returned instead of making a new request.
   const [isCardViewInCenter] = useMediaQuery("(min-width: 1200px)");
+  const { user, setUser } = useContext(UserContext);
 
   return (
     <>
@@ -48,10 +51,13 @@ function AllShops() {
                 {shop.shopName}
               </Text>
               <Text color="#7A7A7A">{shop.shopDescription} </Text>
-              <Button my="2" textAlign={"center"} bg="#aac6ca" size={"sm"}>
+              {/* <Button my="2" textAlign={"center"} bg="#aac6ca" size={"sm"}>
                 {" "}
-                <Link to={`/products/${shop.id}`}> Visit Shop </Link>
-              </Button>
+                <Link to={!!user && user.id ? "/products" : "/"}>
+                  {" "}
+                  Visit Shop{" "}
+                </Link>
+              </Button> */}
             </GridItem>
           );
         })}

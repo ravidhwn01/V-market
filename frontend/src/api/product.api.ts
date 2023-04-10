@@ -14,10 +14,8 @@ export const getAllProducts = async () => {
   return products.data;
 };
 
-export const getAllProductsForShop = async (shopkeeperId: number) => {
-  const products = await axiosInstance.get(
-    `product/shopkeeper/${shopkeeperId}`
-  );
+export const getAllProductsForShop = async () => {
+  const products = await axiosInstance.get(`product/shopkeeper/`);
   return products.data;
 };
 

@@ -35,7 +35,7 @@ function SignUp() {
   const mutation = useMutation(addShopkeeper, {
     onSuccess: () => {
       queryClient.refetchQueries("shops");
-      navigate("/products");
+      navigate("/");
     },
   });
 
@@ -172,15 +172,12 @@ function SignUp() {
           </Button>
         </Flex>
       </form>
-
-      <Heading textAlign={"center"} my={"3"} size={"sm"}>
-        {" "}
-        Already have an account !{" "}
-        <Link to={"/login"} color="teal.500">
+      <Link to={"/login"} color="teal.500">
+        <Heading textAlign={"center"} my={"3"} size={"sm"}>
           {" "}
-          Login{" "}
-        </Link>
-      </Heading>
+          Already have an account ! Login{" "}
+        </Heading>
+      </Link>
     </>
   );
 }

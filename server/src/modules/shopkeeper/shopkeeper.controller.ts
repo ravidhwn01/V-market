@@ -30,7 +30,7 @@ export class ShopkeeperController {
     return this.shopkeeperService.create(createShopkeeperDto);
   }
 
-  @UseGuards(AuthGuard('jwt'))
+  // @UseGuards(AuthGuard('jwt'))
   @Get()
   findAll() {
     return this.shopkeeperService.getAllWithProducts();
