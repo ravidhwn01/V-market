@@ -12,8 +12,11 @@ export class ProductService {
     this.repository = this.sequelize.getRepository(ProductSchema);
   }
 
-  create(createProductDto: CreateProductDto) {
-    return this.repository.create(createProductDto);
+  create(createProductDto: CreateProductDto, userId: number) {
+    return this.repository.create({
+      shopkeeperId: userId,
+      ...createProductDto,
+    });
   }
 
   findAll() {
@@ -31,6 +34,7 @@ export class ProductService {
       where: {
         shopkeeperId: shopkeeperId,
       },
+      order: [['id', 'DESC']],
     });
   }
 

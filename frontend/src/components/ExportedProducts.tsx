@@ -19,16 +19,11 @@ import { IExportedProduct } from "../interfaces/exportedProduct.interface";
 import Navbar from "./Navbar";
 
 function ExportedProducts() {
-  const { shopkeeperId } = useParams();
-  console.log(shopkeeperId);
-  const queryClient = useQueryClient();
-  const [isCardViewInCenter] = useMediaQuery("(min-width: 1200px)");
-
-  const { data } = useQuery<IExportedProduct[]>(
-    `exportedProduct-${shopkeeperId}`,
+  const { data, refetch } = useQuery<IExportedProduct[]>(
+    `exportedProducts`,
     getAllExportedProducts
   );
-
+  const [isCardViewInCenter] = useMediaQuery("(min-width: 1200px)");
   const [isOpen, setIsOpen] = React.useState(false);
   const onClose = () => setIsOpen(false);
   const cancelRef = React.useRef(null);
@@ -70,10 +65,7 @@ function ExportedProducts() {
 
                 <Button
                   onClick={() => {
-                    importProduct(
-                      allExportedProduct.id,
-                      parseInt(shopkeeperId!)
-                    );
+                    importProduct(allExportedProduct.id).then(() => refetch());
                     setIsOpen(true);
                   }}
                   w="100%"

@@ -12,3 +12,8 @@ export const getShopkeeper = async () => {
   console.log(shopkeeper.data);
   return shopkeeper.data;
 };
+
+export async function getUserByToken() {
+  const user = await axiosInstance.get("/shopkeeper/me");
+  return user.data;
+}

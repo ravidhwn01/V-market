@@ -34,13 +34,12 @@ function AddProduct() {
     resolver: yupResolver(ProductSchema),
   });
   const onHandle = (product: IProduct) => {
-    console.log(product, shopId);
-    addProducts.mutate({ ...product, shopkeeperId: parseInt(shopId!) });
+    addProducts.mutate({ ...product });
   };
 
   const addProducts = useMutation(addProduct, {
     onSuccess: () => {
-      queryClient.refetchQueries(`products-${shopId}`);
+      queryClient.refetchQueries(`products`);
     },
   });
 

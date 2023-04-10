@@ -8,9 +8,16 @@ export const addProduct = async (product: IProduct) => {
   return addedProductResponse.data;
 };
 
-export const getAllProduct = async (shopId: string) => {
-  const products = await axiosInstance.get(`product/shopkeeper/${shopId}`);
+export const getAllProducts = async () => {
+  const products = await axiosInstance.get(`product/shopkeeper`);
   console.log(products.data);
+  return products.data;
+};
+
+export const getAllProductsForShop = async (shopkeeperId: number) => {
+  const products = await axiosInstance.get(
+    `product/shopkeeper/${shopkeeperId}`
+  );
   return products.data;
 };
 

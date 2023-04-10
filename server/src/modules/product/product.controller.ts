@@ -7,6 +7,7 @@ import {
   Param,
   Delete,
   UseGuards,
+  Request,
 } from '@nestjs/common';
 import { ProductService } from './product.service';
 import { CreateProductDto } from './dto/create-product.dto';
@@ -17,9 +18,10 @@ import { AuthGuard } from '@nestjs/passport';
 export class ProductController {
   constructor(private productService: ProductService) {}
 
+  @UseGuards(AuthGuard('jwt'))
   @Post()
-  create(@Body() createProductDto: CreateProductDto) {
-    return this.productService.create(createProductDto);
+  create(@Request() req, @Body() createProductDto: CreateProductDto) {
+    return this.productService.create(createProductDto, req.user.id);
   }
 
   @Get()
@@ -27,9 +29,14 @@ export class ProductController {
     return this.productService.getAllWithShopKeeper();
   }
   @UseGuards(AuthGuard('jwt'))
-  @Get('/shopkeeper/:shopkeeperId')
-  getAllForShopKeeper(@Param('shopkeeperId') shopkeeperId: string) {
-    return this.productService.getAllForShopKeeper(+shopkeeperId);
+  @Get('/shopkeeper')
+  getAllForShopKeeper(@Request() req) {
+    return this.productService.getAllForShopKeeper(+req.user.id);
+  }
+
+  @Get('/shopkeeper/:id')
+  getAllForOtherShopkeeper(@Param('id') id) {
+    return this.productService.getAllForShopKeeper(+id);
   }
 
   @Get(':id')

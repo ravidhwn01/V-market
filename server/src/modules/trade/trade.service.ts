@@ -7,6 +7,7 @@ import { TradeSchema } from 'src/schemas/trade.schema';
 import { ProductService } from '../product/product.service';
 import { CreateTradeDto } from './dto/create-trade.dto';
 import { UpdateTradeDto } from './dto/update-trade.dto';
+import { Op } from 'sequelize';
 @Injectable()
 export class TradeService {
   private repository: Repository<TradeSchema>;
@@ -16,20 +17,26 @@ export class TradeService {
   ) {
     this.repository = this.sequelize.getRepository(TradeSchema);
   }
-  create(createTradeDto: CreateTradeDto) {
-    return this.repository.create(createTradeDto);
+  create(createTradeDto: CreateTradeDto, shopId) {
+    return this.repository.create({
+      ...createTradeDto,
+      exportedShopkeeperId: shopId,
+    });
   }
 
   findAll() {
     return this.repository.findAll();
   }
-  getProductWithTrade() {
+  getProductWithTrade(shopkeeperId: number) {
     return this.repository.findAll({
       include: [ProductSchema, ShopkeeperSchema],
+      where: {
+        exportedShopkeeperId: { [Op.ne]: shopkeeperId },
+        tradestatus: false,
+      },
     });
   }
-  async importedTrade(importTradeData: IImportTradeData) {
-    console.log(importTradeData);
+  async importedTrade(importTradeData: IImportTradeData, shopkeeperId: number) {
     const importedProductData = await this.repository.findOne({
       where: {
         id: importTradeData.tradeId,
@@ -39,16 +46,16 @@ export class TradeService {
     const tradedProduct = await this.productService.update(
       importedProductData.productId,
       {
-        shopkeeperId: importTradeData.shopkeeperId,
+        shopkeeperId: shopkeeperId,
       },
     );
     console.log(tradedProduct);
 
     this.update(importedProductData.id, {
-      importedShopkeeperId: importTradeData.shopkeeperId,
+      importedShopkeeperId: shopkeeperId,
       tradestatus: true,
     });
-    this.remove(importedProductData.id);
+    // this.remove(importedProductData.id);
   }
   findOne(id: number) {
     return this.repository.findOne({

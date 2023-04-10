@@ -14,27 +14,32 @@ import { CreateTradeDto } from './dto/create-trade.dto';
 import { UpdateTradeDto } from './dto/update-trade.dto';
 import { IImportTradeData } from 'src/interfaces/importTrade.interface';
 import { AuthGuard } from '@nestjs/passport';
+import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 
 @Controller('trade')
 export class TradeController {
   constructor(private readonly tradeService: TradeService) {}
 
+  @UseGuards(JwtAuthGuard)
   @Post()
-  create(@Body() createTradeDto: CreateTradeDto) {
+  create(@Request() request, @Body() createTradeDto: CreateTradeDto) {
     console.log({ createTradeDto });
-    return this.tradeService.create(createTradeDto);
+    return this.tradeService.create(createTradeDto, request.user.id);
   }
 
-  @UseGuards(AuthGuard('jwt'))
+  @UseGuards(JwtAuthGuard)
   @Get()
   findAll(@Request() req) {
-    console.log(req.user);
-    return this.tradeService.getProductWithTrade();
+    return this.tradeService.getProductWithTrade(req.user.id);
   }
 
+  @UseGuards(JwtAuthGuard)
   @Post('import')
-  addExportedProduct(@Body() importedProduct: IImportTradeData) {
-    return this.tradeService.importedTrade(importedProduct);
+  addExportedProduct(
+    @Request() req,
+    @Body() importedProduct: IImportTradeData,
+  ) {
+    return this.tradeService.importedTrade(importedProduct, req.user.id);
   }
 
   @Get(':id')

@@ -2,6 +2,7 @@ import {
   Button,
   Grid,
   GridItem,
+  Heading,
   Image,
   Text,
   useMediaQuery,
@@ -40,6 +41,7 @@ function AllShops() {
               borderRadius="8px"
               key={shop.id}
             >
+              <Heading size="md">Shop name: {shop.shopName} </Heading>
               <Image src={shop.shopImageUrl} />
 
               <Text fontSize={"2xl"} fontWeight="bold">
@@ -48,7 +50,7 @@ function AllShops() {
               <Text color="#7A7A7A">{shop.shopDescription} </Text>
               <Button my="2" textAlign={"center"} bg="#aac6ca" size={"sm"}>
                 {" "}
-                <Link to={`/listofproducts/${shop.id}`}> Visit Shop </Link>
+                <Link to={`/products/${shop.id}`}> Visit Shop </Link>
               </Button>
             </GridItem>
           );

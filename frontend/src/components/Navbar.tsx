@@ -1,8 +1,13 @@
 import { Flex, Heading, Image, Text, useMediaQuery } from "@chakra-ui/react";
-import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { UserContext } from "../context/user.context";
 
 function Navbar() {
   const [showNavbarPosition] = useMediaQuery("(min-width: 700px)");
+
+  const { user, setUser } = useContext(UserContext);
+  const navigate = useNavigate();
   return (
     <Flex
       justifyContent={"space-between"}
@@ -41,30 +46,36 @@ function Navbar() {
             Home{" "}
           </Heading>
         </Link>
-        {/* <Link to={`/exportedproducts/${id}`}>
-          {" "}
-          <Heading fontSize={"2xl"} fontWeight={"normal"}>
-            Import Products
-          </Heading>
-        </Link> */}
         <Link to={"/signup"}>
           <Heading
             _hover={{ textDecoration: "underline" }}
             fontSize={"2xl"}
             fontWeight={"medium"}
           >
-            Sign Up
+            {!!user && user.shopName ? user.shopName : "Sign Up"}
           </Heading>
         </Link>
-        <Link to={"/login"}>
-          <Heading
-            _hover={{ textDecoration: "underline" }}
-            fontSize={"2xl"}
-            fontWeight={"medium"}
-          >
-            Login
+        <Link to={!!user && user.firstName ? "/products" : "/login"}>
+          <Heading fontSize={"2xl"} fontWeight={"medium"}>
+            {!!user && user.firstName ? user.firstName : "Login"}
           </Heading>
         </Link>
+        {!!user && (
+          <Link to={!!user && user.firstName ? "/products" : "/login"}>
+            <Heading
+              _hover={{ textDecoration: "underline" }}
+              fontSize={"2xl"}
+              fontWeight={"medium"}
+              onClick={() => {
+                localStorage.removeItem("access_token");
+                setUser(undefined);
+                navigate("/login");
+              }}
+            >
+              Logout
+            </Heading>
+          </Link>
+        )}
       </Flex>
     </Flex>
   );

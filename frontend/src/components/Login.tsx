@@ -8,11 +8,13 @@ import {
   Input,
 } from "@chakra-ui/react";
 import { FieldValues, useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Navbar from "./Navbar";
 import { useMutation } from "react-query";
 import { loginShopkeeperRequest } from "../api/login-api";
 import { ILoginUser } from "../interfaces/loginDetails.interface";
+import { useContext } from "react";
+import { UserContext } from "../context/user.context";
 
 function Login() {
   const {
@@ -20,13 +22,20 @@ function Login() {
     handleSubmit,
     formState: { errors },
   } = useForm<ILoginUser>();
+
+  const { setUser } = useContext(UserContext);
+  const navigate = useNavigate();
   const onHandleSubmit = (loginUserDetail: ILoginUser) => {
     console.log(loginUserDetail);
     loginShopkeeperMutation.mutate(loginUserDetail);
   };
 
   const loginShopkeeperMutation = useMutation(loginShopkeeperRequest, {
-    onSuccess: () => {},
+    onSuccess: (data) => {
+      console.log(data.user);
+      setUser(data.user);
+      navigate("/products");
+    },
   });
 
   return (

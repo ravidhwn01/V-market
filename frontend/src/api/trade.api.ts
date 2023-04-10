@@ -15,10 +15,9 @@ export const getAllExportedProducts = async () => {
   return getExportedProduct.data;
 };
 
-export const importProduct = async (tradeId: number, shopkeeperId: number) => {
+export const importProduct = async (tradeId: number) => {
   const exportedProduct = await axiosInstance.post("trade/import", {
     tradeId,
-    shopkeeperId,
   });
   console.log(exportedProduct.data, "imported product");
 

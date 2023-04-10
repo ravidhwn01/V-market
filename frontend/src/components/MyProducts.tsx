@@ -1,9 +1,4 @@
 import {
-  AlertDialog,
-  AlertDialogBody,
-  AlertDialogContent,
-  AlertDialogFooter,
-  AlertDialogOverlay,
   Button,
   Flex,
   Grid,
@@ -17,42 +12,35 @@ import _ from "lodash";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import { useNavigate, useParams } from "react-router";
 import { Link } from "react-router-dom";
-import { getAllProducts, getAllProductsForShop } from "../api/product.api";
+import { getAllProducts } from "../api/product.api";
 import { addProductsToExport } from "../api/trade.api";
 import { Product } from "../interfaces/shop.interface";
 import AddProduct from "./AddProduct";
 import Navbar from "./Navbar";
-import React from "react";
 
-function ListOfProducts() {
+function MyProducts() {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
-  const { shopId } = useParams();
   const [isCardViewInCenter] = useMediaQuery("(min-width: 1200px)");
 
-  const { data } = useQuery<Product[]>(`products-${shopId}`, () => {
-    return getAllProductsForShop(+shopId!);
+  const { data } = useQuery<Product[]>(`products`, () => {
+    return getAllProducts();
     // we are certain that shopId will not be null or undefined at this point.
   });
 
-  console.log({ shopId });
-
   const addProductToExport = useMutation(addProductsToExport, {
     onSuccess: () => {
-      queryClient.refetchQueries(`products-${shopId}`);
+      queryClient.refetchQueries(`products`);
       navigate(`/products`);
     },
   });
-  const [isOpen, setIsOpen] = React.useState(false);
-  const onClose = () => setIsOpen(false);
-  const cancelRef = React.useRef(null);
 
   return (
     <>
       <Navbar />
       <Flex justifyContent={"flex-end"} gap={1}>
         <Button m="4">
-          <Link to={`/exportedproducts/${shopId}`}> Import Products </Link>
+          <Link to={`/exported-products`}> Import Products </Link>
         </Button>
         <Button m="4" bg={"#aac6ca"}>
           <AddProduct />
@@ -91,7 +79,6 @@ function ListOfProducts() {
                   onClick={() =>
                     addProductToExport.mutate({
                       productId: id,
-                      exportedShopkeeperId: shopId,
                       importedShopkeeper: false,
                     })
                   }
@@ -99,25 +86,6 @@ function ListOfProducts() {
                 >
                   Export
                 </Button>
-                <AlertDialog
-                  isOpen={isOpen}
-                  leastDestructiveRef={cancelRef}
-                  onClose={onClose}
-                >
-                  <AlertDialogOverlay>
-                    <AlertDialogContent>
-                      <AlertDialogBody fontSize="lg" fontWeight="bold">
-                        Product Exported Successfully.
-                      </AlertDialogBody>
-
-                      <AlertDialogFooter>
-                        <Button ref={cancelRef} onClick={onClose}>
-                          Cancel
-                        </Button>
-                      </AlertDialogFooter>
-                    </AlertDialogContent>
-                  </AlertDialogOverlay>
-                </AlertDialog>
               </Flex>
             </GridItem>
           );
@@ -127,4 +95,4 @@ function ListOfProducts() {
   );
 }
 
-export default ListOfProducts;
+export default MyProducts;

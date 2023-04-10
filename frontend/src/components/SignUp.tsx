@@ -35,7 +35,7 @@ function SignUp() {
   const mutation = useMutation(addShopkeeper, {
     onSuccess: () => {
       queryClient.refetchQueries("shops");
-      navigate("/");
+      navigate("/products");
     },
   });
 
