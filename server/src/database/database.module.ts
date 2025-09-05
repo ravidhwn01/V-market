@@ -12,7 +12,7 @@ import { TradeSchema } from 'src/schemas/trade.schema';
       host: 'localhost',
       password: 'postgres',
       username: 'postgres',
-      port: 5002,
+      port: 5432,
       models: [ShopkeeperSchema, ProductSchema, TradeSchema],
       autoLoadModels: true,
       // Finally, the autoLoadModels property is set to true, which tells the SequelizeModule to automatically load all models defined in the models array.

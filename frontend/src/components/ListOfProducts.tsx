@@ -4,6 +4,7 @@ import {
   AlertDialogContent,
   AlertDialogFooter,
   AlertDialogOverlay,
+  Box,
   Button,
   Flex,
   Grid,
@@ -64,9 +65,9 @@ function ListOfProducts() {
         <Button m="4">
           <Link to={`/exportedproducts/${shopId}`}> Import Products </Link>
         </Button>
-        <Button m="4" bg={"#aac6ca"}>
+        <Box m="4" bg={"#aac6ca"}>
           <AddProduct />
-        </Button>
+        </Box>
       </Flex>
 
       <Grid

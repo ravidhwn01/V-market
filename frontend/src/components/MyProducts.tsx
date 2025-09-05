@@ -63,7 +63,7 @@ function MyProducts() {
               h="100%"
               boxShadow={"2xl"}
               borderRadius="8px"
-              key={product.shopkeeperId}
+              key={product.id}
             >
               <Image src={product.productImageUrl} alt="loading..." />
 
